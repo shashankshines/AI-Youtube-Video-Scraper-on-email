@@ -1,35 +1,26 @@
 ---
-description: Deploy the AI News Scraper to Cloudflare
+description: Deploy changes by pushing to GitHub first, then deploying to Cloudflare
 ---
 
-# Deploying AI News Scraper
+# Deployment Workflow
 
-Follow these steps to deploy your automation to Cloudflare:
+This workflow ensures that all changes are tracked in version control on GitHub before being deployed to the live Cloudflare Worker.
 
-1. **Login to Cloudflare**
+// turbo-all
+1. **Commit and Push to GitHub**
+   Run the following command to stage all changes, commit them, and push to the main branch.
    ```bash
-   npx wrangler login
+   git add . && git commit -m "Update project features and logic" && git push origin main
    ```
 
-2. **Set YouTube API Key**
-   Get your key from Google Cloud Console.
-   ```bash
-   npx wrangler secret put YOUTUBE_API_KEY
-   ```
-
-3. **Set Resend API Key**
-   Get your key from Resend.com.
-   ```bash
-   npx wrangler secret put RESEND_API_KEY
-   ```
-
-4. **Update Recipient Email (Optional)**
-   The email is currently set to `shashankshines@gmail.com` in `wrangler.toml`. If you need to change it, update the `RECIPIENT_EMAIL` value in that file.
-
-5. **Deploy**
+2. **Deploy to Cloudflare**
+   After the code is safely on GitHub, deploy the updated worker.
    ```bash
    npx wrangler deploy
    ```
 
-6. **Verify**
-   Once deployed, you can verify it's working by visiting the worker URL with `?test` suffix (e.g., `https://ai-news-scraper-email.yourdomain.workers.dev/?test`).
+3. **Verify Deployment**
+   Check the live status or trigger a manual test.
+   ```bash
+   curl "https://ai-news-scraper-email.shashankshines.workers.dev"
+   ```
