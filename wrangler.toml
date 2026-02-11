@@ -1,0 +1,9 @@
+name = "ai-news-scraper-email"
+main = "src/index.ts"
+compatibility_date = "2024-02-11"
+
+[triggers]
+crons = ["0 0 * * *"]
+
+[vars]
+RECIPIENT_EMAIL = "shashankshines@gmail.com, shashank.lakhotia1@gmail.com"
