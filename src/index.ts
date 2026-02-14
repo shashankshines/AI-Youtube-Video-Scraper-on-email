@@ -107,8 +107,28 @@ function parseDuration(isoDuration: string): number {
 /**
  * Performs a single YouTube search query and returns video IDs
  */
-async function searchYouTube(apiKey: string, query: string, publishedAfter: string, maxResults: number = 25): Promise<string[]> {
-    const searchUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResults}&q=${encodeURIComponent(query)}&type=video&publishedAfter=${publishedAfter}&order=relevance&relevanceLanguage=en&key=${apiKey}`;
+async function searchYouTube(apiKey: string, query: string, publishedAfter: string, maxResults: number = 25, channelId?: string): Promise<string[]> {
+    const params = new URLSearchParams({
+        part: 'snippet',
+        maxResults: maxResults.toString(),
+        type: 'video',
+        publishedAfter: publishedAfter,
+        key: apiKey
+    });
+
+    if (query) {
+        params.append('q', query);
+    }
+
+    if (channelId) {
+        params.append('channelId', channelId);
+        params.append('order', 'date'); // Get latest first for channel search
+    } else {
+        params.append('order', 'relevance');
+        params.append('relevanceLanguage', 'en');
+    }
+
+    const searchUrl = `https://www.googleapis.com/youtube/v3/search?${params.toString()}`;
     const response = await fetch(searchUrl);
     const data: any = await response.json();
 
@@ -133,21 +153,24 @@ async function getVideoDetails(apiKey: string, videoIds: string[]): Promise<YouT
 
     if (!data.items) return [];
 
-    return data.items.map((item: any) => ({
-        id: item.id,
-        title: item.snippet.title,
-        thumbnail: item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url || item.snippet.thumbnails.default?.url,
-        viewCount: parseInt(item.statistics?.viewCount || '0'),
-        likeCount: parseInt(item.statistics?.likeCount || '0'),
-        publishedAt: item.snippet.publishedAt,
-        channelTitle: item.snippet.channelTitle,
-        durationSeconds: parseDuration(item.contentDetails?.duration || 'PT0S'),
-    }));
+    return data.items.map((item: any) => {
+        const video = {
+            id: item.id,
+            title: item.snippet.title,
+            thumbnail: item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url || item.snippet.thumbnails.default?.url,
+            viewCount: parseInt(item.statistics?.viewCount || '0'),
+            likeCount: parseInt(item.statistics?.likeCount || '0'),
+            publishedAt: item.snippet.publishedAt,
+            channelTitle: item.snippet.channelTitle,
+            durationSeconds: parseDuration(item.contentDetails?.duration || 'PT0S'),
+        };
+        return video;
+    });
 }
 
 async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVideo[]> {
-    // Search within the last 48 hours to ensure we have enough content
-    const publishedAfter = new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString();
+    // Search within the last 30 days for testing to ensure we catch content
+    const publishedAfter = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
 
     // Focused search queries for AI DEVELOPMENT news — models, APIs, tools, coding, research
     const searchQueries = [
@@ -169,18 +192,28 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
         // Industry dev news
         'AI startup funding launch product',
         'AI infrastructure GPU training news',
+        'AI videos Vaibhav Sisinty',
     ];
 
     logs.push(`Running ${searchQueries.length} search queries for AI dev news...`);
 
-    // Run all searches in parallel
-    const searchPromises = searchQueries.map(query => searchYouTube(apiKey, query, publishedAfter, 15));
+    const searchPromises = [
+        // Prioritize Vaibhav Sisinty's content
+        searchYouTube(apiKey, '@vaibhavsisinty', publishedAfter, 10),
+        searchYouTube(apiKey, 'AI', publishedAfter, 10, 'UClXAalunTPaX1YV185DWUeg'),
+        ...searchQueries.map(query => searchYouTube(apiKey, query, publishedAfter, 15)),
+    ];
     const searchResults = await Promise.all(searchPromises);
 
     // Collect all unique video IDs
     const allVideoIds = new Set<string>();
     searchResults.forEach((ids, index) => {
-        logs.push(`Query "${searchQueries[index]}": found ${ids.length} results`);
+        let queryLabel = '';
+        if (index === 0) queryLabel = '@vaibhavsisinty';
+        else if (index === 1) queryLabel = 'Vaibhav Channel ID Search';
+        else queryLabel = searchQueries[index - 2];
+
+        logs.push(`Query "${queryLabel}": found ${ids.length} results`);
         ids.forEach(id => allVideoIds.add(id));
     });
 
@@ -204,7 +237,7 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
     logs.push(`Fetched details for ${allVideos.length} videos.`);
 
     // --- POSITIVE FILTER: Title must mention AI dev-relevant keywords ---
-    const aiDevKeywords = /\b(chatgpt|gpt[-\s]?[o34-9]|gpt|openai|gemini|claude|anthropic|llm|llama|mistral|deepseek|copilot|midjourney|stable diffusion|dall[-\s]?e|sora|perplexity|ai agent|ai model|ai api|ai tool|ai coding|ai developer|machine learning|deep learning|neural network|transformer|fine[-\s]?tun|rag|langchain|vector database|hugging\s?face|open[-\s]?source ai|agi|reasoning model|multimodal|text[-\s]?to|embedding|tokeniz|inference|benchmark|parameter|ai chip|gpu|tpu|training data|ai safety|alignment|ai research|ai update|ai release|ai launch|ai news|ai breakthrough|ai startup|artificial intelligence)\b/i;
+    const aiDevKeywords = /\b(chatgpt|gpt[-\s]?[o34-9]|gpt|openai|gemini|claude|anthropic|llm|llama|mistral|deepseek|copilot|midjourney|stable diffusion|dall[-\s]?e|sora|perplexity|ai agent|ai model|ai api|ai tool|ai coding|ai developer|machine learning|deep learning|neural network|transformer|fine[-\s]?tun|rag|langchain|vector database|hugging\s?face|open[-\s]?source ai|agi|reasoning model|multimodal|text[-\s]?to|embedding|tokeniz|inference|benchmark|parameter|ai chip|gpu|tpu|training data|ai safety|alignment|ai research|ai update|ai release|ai launch|ai news|ai breakthrough|ai startup|artificial intelligence|stock market|influencer|commercial|society)\b/i;
 
     // --- NEGATIVE FILTER: Exclude non-dev content (geopolitics, entertainment, generic) ---
     const excludeKeywords = /\b(upsc|ias|civil service|wion|firstpost|palki sharma|vantage|geopolit|military|war\b|attack|iran|weapon|drone strike|election|politics|modi|trump|biden|congress|parliament|prayer room|islamic|hindu|christian|religious|motivat|spiritual|yoga|horoscope|zodiac|cricket|football|soccer|nfl|ipl|bollywood|movie review|song|dance|recipe|cooking|fitness|workout|weight loss|makeup|beauty|skincare|real estate|stock market tip|forex|crypto pump|earn money online|side hustle|passive income)\b/i;
@@ -217,12 +250,13 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
 
             // Minimum 3 minutes — real dev content is longer
             if (video.durationSeconds < 180) return false;
-            // Minimum 500 views
-            if (video.viewCount < 500) return false;
+            // Minimum 100 views (lowered to ensure Vaibhav's newer videos are caught)
+            if (video.viewCount < 100) return false;
             // Must pass positive AI dev keyword check
             if (!aiDevKeywords.test(combined)) return false;
             // Must NOT match excluded topics
             if (excludeKeywords.test(combined)) return false;
+
             return true;
         });
 
@@ -238,6 +272,7 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
         'code with ania kubów', 'tech with tim', 'krish naik', 'codebasics',
         'varun mayya', 'tkssharma', 'traversy media', 'deeplizard',
         'statquest', '3blue1brown', 'andrej karpathy', 'lex fridman',
+        'vaibhav sisinty',
     ]);
 
     // Score videos by a combination of views, recency, and channel quality
@@ -257,11 +292,6 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
     // Sort by score and take top 10
     scoredVideos.sort((a, b) => b.score - a.score);
     const topVideos = scoredVideos.slice(0, 10);
-
-    logs.push(`Top ${topVideos.length} AI dev videos selected.`);
-    topVideos.forEach((v, i) => {
-        logs.push(`  ${i + 1}. [${v.viewCount.toLocaleString()} views] ${v.channelTitle}: ${v.title}`);
-    });
 
     return topVideos;
 }
