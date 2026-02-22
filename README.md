@@ -1,12 +1,13 @@
 # AI YouTube News Scraper & Emailer
 
-This project is a Cloudflare Worker that scrapes the top AI-related YouTube videos from the last 24 hours (with at least 10k views) and sends a beautifully formatted email daily.
+This project is a Cloudflare Worker that scrapes the top AI-related YouTube videos from the last 72 hours, filters them for English language and a minimum subscriber count (>= 300k), and sends a beautifully formatted email daily.
 
 ## Features
-- **Scraping**: Uses YouTube Data API v3 to find videos.
-- **Filtering**: Specifically looks for AI content with >10,000 views in the last 24 hours.
-- **Emailing**: Sends a premium HTML email via Resend API.
-- **Automation**: Runs daily at 00:00 UTC using Cloudflare Cron Triggers.
+- **Scraping**: Uses YouTube Data API v3 to find videos across multiple targeted AI dev queries.
+- **Language Filtering**: Strict English-only filtering using metadata, script detection (no Devanagari/regional scripts), and keyword checks.
+- **Authority Filtering**: Only includes videos from channels with **>= 300,000 subscribers** to ensure high-quality content.
+- **Emailing**: Sends a premium HTML email via Resend API with scoring based on relevance and velocity.
+- **Automation**: Runs daily using Cloudflare Cron Triggers.
 - **Hosting**: Designed for Cloudflare Workers (Free Tier).
 
 ## Setup Instructions

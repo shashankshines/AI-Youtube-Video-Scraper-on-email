@@ -12,7 +12,12 @@ interface YouTubeVideo {
     likeCount: number;
     publishedAt: string;
     channelTitle: string;
+    channelId: string;
     durationSeconds: number;
+    audioLanguage?: string;
+    defaultLanguage?: string;
+    description?: string;
+    subscriberCount?: number;
 }
 
 export default {
@@ -35,7 +40,7 @@ export default {
         }
 
         if (url.searchParams.has('test')) {
-            const result = await scrapeAndSendEmail(env);
+            const result = await scrapeAndSendEmail(env, true);
             return new Response(JSON.stringify(result, null, 2), {
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -72,8 +77,16 @@ export default {
     },
 };
 
-async function scrapeAndSendEmail(env: Env) {
+async function scrapeAndSendEmail(env: Env, isTest: boolean = false) {
     const logs: string[] = [];
+    if (isTest) {
+        logs.push('Triggering manual test with mock data...');
+        const videos = getMockVideos();
+        const emailResult = await sendEmail(env, videos, logs);
+        logs.push(`Successfully sent test email with ${videos.length} mock videos.`);
+        return { success: true, videoCount: videos.length, emailResult, logs };
+    }
+
     logs.push('Starting daily AI YouTube video scraping...');
     try {
         const videos = await getTopAIVideos(env.YOUTUBE_API_KEY, logs);
@@ -132,6 +145,10 @@ async function searchYouTube(apiKey: string, query: string, publishedAfter: stri
     const response = await fetch(searchUrl);
     const data: any = await response.json();
 
+    if (data.error) {
+        throw new Error(`YouTube API Error: ${data.error.message} (${data.error.code})`);
+    }
+
     if (!data.items || data.items.length === 0) {
         return [];
     }
@@ -153,8 +170,8 @@ async function getVideoDetails(apiKey: string, videoIds: string[]): Promise<YouT
 
     if (!data.items) return [];
 
-    return data.items.map((item: any) => {
-        const video = {
+    const videos = data.items.map((item: any) => {
+        return {
             id: item.id,
             title: item.snippet.title,
             thumbnail: item.snippet.thumbnails.high?.url || item.snippet.thumbnails.medium?.url || item.snippet.thumbnails.default?.url,
@@ -162,15 +179,37 @@ async function getVideoDetails(apiKey: string, videoIds: string[]): Promise<YouT
             likeCount: parseInt(item.statistics?.likeCount || '0'),
             publishedAt: item.snippet.publishedAt,
             channelTitle: item.snippet.channelTitle,
+            channelId: item.snippet.channelId,
             durationSeconds: parseDuration(item.contentDetails?.duration || 'PT0S'),
+            audioLanguage: item.snippet.defaultAudioLanguage,
+            defaultLanguage: item.snippet.defaultLanguage,
+            description: item.snippet.description,
         };
-        return video;
     });
+
+    // Fetch channel subscriber counts in batches
+    const channelIds = Array.from(new Set(videos.map((v: any) => v.channelId))).join(',');
+    if (channelIds) {
+        const channelUrl = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelIds}&key=${apiKey}`;
+        const channelResponse = await fetch(channelUrl);
+        const channelData: any = await channelResponse.json();
+
+        const subCounts: Record<string, number> = {};
+        channelData.items?.forEach((item: any) => {
+            subCounts[item.id] = parseInt(item.statistics?.subscriberCount || '0');
+        });
+
+        videos.forEach((v: any) => {
+            v.subscriberCount = subCounts[v.channelId] || 0;
+        });
+    }
+
+    return videos;
 }
 
 async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVideo[]> {
-    // Search within the last 30 days for testing to ensure we catch content
-    const publishedAfter = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+    // Search within the last 72 hours to ensure we catch content from the last few days
+    const publishedAfter = new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString();
 
     // Focused search queries for AI DEVELOPMENT news — models, APIs, tools, coding, research
     const searchQueries = [
@@ -237,16 +276,19 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
     logs.push(`Fetched details for ${allVideos.length} videos.`);
 
     // --- POSITIVE FILTER: Title must mention AI dev-relevant keywords ---
-    const aiDevKeywords = /\b(chatgpt|gpt[-\s]?[o34-9]|gpt|openai|gemini|claude|anthropic|llm|llama|mistral|deepseek|copilot|midjourney|stable diffusion|dall[-\s]?e|sora|perplexity|ai agent|ai model|ai api|ai tool|ai coding|ai developer|machine learning|deep learning|neural network|transformer|fine[-\s]?tun|rag|langchain|vector database|hugging\s?face|open[-\s]?source ai|agi|reasoning model|multimodal|text[-\s]?to|embedding|tokeniz|inference|benchmark|parameter|ai chip|gpu|tpu|training data|ai safety|alignment|ai research|ai update|ai release|ai launch|ai news|ai breakthrough|ai startup|artificial intelligence|stock market|influencer|commercial|society)\b/i;
+    const aiDevKeywords = /\b(ai|chatgpt|gpt[-\s]?[o34-9]|gpt|openai|gemini|claude|anthropic|llm|llama|mistral|deepseek|copilot|midjourney|stable diffusion|dall[-\s]?e|sora|perplexity|ai agent|ai model|ai api|ai tool|ai coding|ai dev|ai development|machine learning|deep learning|neural network|transformer|fine[-\s]?tun|rag|langchain|vector database|hugging\s?face|open[-\s]?source ai|agi|reasoning model|multimodal|text[-\s]?to|embedding|tokeniz|inference|benchmark|parameter|ai chip|gpu|tpu|training data|ai safety|alignment|ai research|ai update|ai release|ai launch|ai news|ai breakthrough|ai startup|artificial intelligence|stock market|influencer|commercial|society)\b/i;
 
     // --- NEGATIVE FILTER: Exclude non-dev content (geopolitics, entertainment, generic) ---
     const excludeKeywords = /\b(upsc|ias|civil service|wion|firstpost|palki sharma|vantage|geopolit|military|war\b|attack|iran|weapon|drone strike|election|politics|modi|trump|biden|congress|parliament|prayer room|islamic|hindu|christian|religious|motivat|spiritual|yoga|horoscope|zodiac|cricket|football|soccer|nfl|ipl|bollywood|movie review|song|dance|recipe|cooking|fitness|workout|weight loss|makeup|beauty|skincare|real estate|stock market tip|forex|crypto pump|earn money online|side hustle|passive income)\b/i;
+
+    // --- LANGUAGE FILTER: Check for non-Latin characters (Devanagari, Arabric, etc.) to catch regional titles ---
+    const nonEnglishScript = /[^\u0000-\u024F\u1E00-\u1EFF\u2000-\u206F\u2070-\u209F\u2100-\u214F\u2150-\u218F\u2C60-\u2C7F\uA720-\uA7FF]/;
 
     const filteredVideos = allVideos
         .filter(video => {
             const title = video.title;
             const channel = video.channelTitle;
-            const combined = `${title} ${channel}`;
+            const combined = `${title} ${channel} ${video.description || ''}`;
 
             // Minimum 3 minutes — real dev content is longer
             if (video.durationSeconds < 180) return false;
@@ -256,6 +298,23 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
             if (!aiDevKeywords.test(combined)) return false;
             // Must NOT match excluded topics
             if (excludeKeywords.test(combined)) return false;
+
+            // Strict Language Filtering
+            // 1. Check metadata
+            const audioLang = (video.audioLanguage || '').toLowerCase();
+            const defaultLang = (video.defaultLanguage || '').toLowerCase();
+            if (audioLang && !audioLang.startsWith('en')) return false;
+            if (defaultLang && !defaultLang.startsWith('en')) return false;
+
+            // 2. Check for non-English script in title (catch Hindi/Regional scripts)
+            if (nonEnglishScript.test(title)) return false;
+
+            // 3. Heuristic: Regional keywords in title that might not be caught by excludeKeywords
+            const regionalKeywords = /\b(hindi|telugu|tamil|kannada|malayalam|bengali|marathi|gujarati|urdu|punjabi)\b/i;
+            if (regionalKeywords.test(title)) return false;
+
+            // 4. Subscriber Count Filter (>= 300k)
+            if (video.subscriberCount !== undefined && video.subscriberCount < 300000) return false;
 
             return true;
         });
@@ -395,6 +454,11 @@ function generateEmailHtml(videos: YouTubeVideo[], unsubscribeUrl: string) {
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td style="padding-top: 6px;">
+                                        <span style="font-size: 12px; color: #9ca3af; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">📅 Uploaded: ${new Date(video.publishedAt).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })}</span>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td style="padding-top: 14px;">
                                         <a href="https://www.youtube.com/watch?v=${video.id}" style="display: inline-block; padding: 10px 24px; background: #ff0000; color: #ffffff; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">▶ Watch Now</a>
                                     </td>
@@ -456,4 +520,102 @@ function generateEmailHtml(videos: YouTubeVideo[], unsubscribeUrl: string) {
         </table>
     </body>
     </html>`;
+}
+
+function getMockVideos(): YouTubeVideo[] {
+    return [
+        {
+            id: 'dQw4w9WgXcQ',
+            title: 'GPT-5 Released? Everything You Need to Know',
+            thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
+            viewCount: 1500000,
+            likeCount: 45000,
+            publishedAt: new Date().toISOString(),
+            channelTitle: 'AI Explained',
+            channelId: 'UC57XajGVB9nN1L-0_y6k4fA',
+            durationSeconds: 720,
+            subscriberCount: 500000,
+        },
+        {
+            id: 'W6u3oBv_OVM',
+            title: 'How to use AI to 10x your productivity - My Secret Workflow',
+            thumbnail: 'https://i.ytimg.com/vi/W6u3oBv_OVM/maxresdefault.jpg',
+            viewCount: 50000,
+            likeCount: 3500,
+            publishedAt: new Date().toISOString(),
+            channelTitle: 'Vaibhav Sisinty',
+            channelId: 'UClXAalunTPaX1YV185DWUeg',
+            durationSeconds: 650,
+            subscriberCount: 400000,
+        },
+        {
+            id: 'T-D1K7xqTyA',
+            title: 'New Open Source LLM Beats GPT-4',
+            thumbnail: 'https://i.ytimg.com/vi/T-D1K7xqTyA/maxresdefault.jpg',
+            viewCount: 850000,
+            likeCount: 25000,
+            publishedAt: new Date().toISOString(),
+            channelTitle: 'Matthew Berman',
+            channelId: 'UCyw6LzOatIDV9V7L3CAtLtw',
+            durationSeconds: 900,
+            subscriberCount: 350000,
+        },
+        {
+            id: 'aircAruvnKk',
+            title: 'AI Dev Tools: 10x Your Productivity',
+            thumbnail: 'https://i.ytimg.com/vi/aircAruvnKk/maxresdefault.jpg',
+            viewCount: 300000,
+            likeCount: 12000,
+            publishedAt: new Date().toISOString(),
+            channelTitle: 'Fireship',
+            channelId: 'UCsBjURrP617_EStu12pZ4gQ',
+            durationSeconds: 185,
+            audioLanguage: 'en',
+            defaultLanguage: 'en',
+            description: 'Top 10 AI tools for developers in 2024.',
+            subscriberCount: 2000000,
+        },
+        {
+            id: 'hindi_test_1',
+            title: 'AI क्या है? (What is AI in Hindi)',
+            thumbnail: 'https://i.ytimg.com/vi/hindi_test_1/default.jpg',
+            viewCount: 5000,
+            likeCount: 500,
+            publishedAt: new Date().toISOString(),
+            channelTitle: 'Tech Hindi',
+            channelId: 'hi_1',
+            durationSeconds: 600,
+            audioLanguage: 'hi',
+            defaultLanguage: 'hi',
+            description: 'Artificial Intelligence explained in Hindi.',
+            subscriberCount: 1000000,
+        },
+        {
+            id: 'hindi_test_2',
+            title: 'Top 10 AI Tools in Hindi',
+            thumbnail: 'https://i.ytimg.com/vi/hindi_test_2/default.jpg',
+            viewCount: 2000,
+            likeCount: 200,
+            publishedAt: new Date().toISOString(),
+            channelTitle: 'AI Dev Hindi',
+            channelId: 'hi_2',
+            durationSeconds: 400,
+            audioLanguage: 'hi',
+            defaultLanguage: 'en',
+            description: 'Learn AI tools in Hindi language.',
+            subscriberCount: 500000,
+        },
+        {
+            id: 'low_sub_test',
+            title: 'AI News Update',
+            thumbnail: 'https://i.ytimg.com/vi/low_sub_test/default.jpg',
+            viewCount: 10000,
+            likeCount: 1000,
+            publishedAt: new Date().toISOString(),
+            channelTitle: 'Small AI Channel',
+            channelId: 'small_1',
+            durationSeconds: 300,
+            subscriberCount: 250000,
+        }
+    ];
 }
