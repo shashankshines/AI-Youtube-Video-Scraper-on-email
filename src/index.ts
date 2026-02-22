@@ -18,6 +18,8 @@ interface YouTubeVideo {
     defaultLanguage?: string;
     description?: string;
     subscriberCount?: number;
+    privacyStatus?: string;
+    uploadStatus?: string;
 }
 
 export default {
@@ -164,7 +166,7 @@ async function getVideoDetails(apiKey: string, videoIds: string[]): Promise<YouT
 
     // YouTube API accepts max 50 IDs per request
     const ids = videoIds.slice(0, 50).join(',');
-    const statsUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${ids}&key=${apiKey}`;
+    const statsUrl = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics,status&id=${ids}&key=${apiKey}`;
     const response = await fetch(statsUrl);
     const data: any = await response.json();
 
@@ -184,6 +186,8 @@ async function getVideoDetails(apiKey: string, videoIds: string[]): Promise<YouT
             audioLanguage: item.snippet.defaultAudioLanguage,
             defaultLanguage: item.snippet.defaultLanguage,
             description: item.snippet.description,
+            privacyStatus: item.status?.privacyStatus,
+            uploadStatus: item.status?.uploadStatus,
         };
     });
 
@@ -315,6 +319,13 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
 
             // 4. Subscriber Count Filter (>= 300k)
             if (video.subscriberCount !== undefined && video.subscriberCount < 300000) return false;
+
+            // 5. Broken Link / Status Filter
+            // Must be public and fully processed
+            if (video.privacyStatus && video.privacyStatus !== 'public') return false;
+            if (video.uploadStatus && video.uploadStatus !== 'processed') return false;
+            // Ensure thumbnail exists
+            if (!video.thumbnail) return false;
 
             return true;
         });
@@ -604,18 +615,36 @@ function getMockVideos(): YouTubeVideo[] {
             defaultLanguage: 'en',
             description: 'Learn AI tools in Hindi language.',
             subscriberCount: 500000,
+            privacyStatus: 'public',
+            uploadStatus: 'processed',
         },
         {
-            id: 'low_sub_test',
-            title: 'AI News Update',
-            thumbnail: 'https://i.ytimg.com/vi/low_sub_test/default.jpg',
+            id: 'private_video',
+            title: 'Top Secret AI Project (English)',
+            thumbnail: 'https://i.ytimg.com/vi/private_video/default.jpg',
             viewCount: 10000,
             likeCount: 1000,
             publishedAt: new Date().toISOString(),
-            channelTitle: 'Small AI Channel',
-            channelId: 'small_1',
+            channelTitle: 'Leaker AI',
+            channelId: 'leak_1',
             durationSeconds: 300,
-            subscriberCount: 250000,
+            subscriberCount: 500000,
+            privacyStatus: 'private',
+            uploadStatus: 'processed',
+        },
+        {
+            id: 'unprocessed_video',
+            title: 'Fresh AI News (English)',
+            thumbnail: 'https://i.ytimg.com/vi/unprocessed_video/default.jpg',
+            viewCount: 500,
+            likeCount: 50,
+            publishedAt: new Date().toISOString(),
+            channelTitle: 'News AI',
+            channelId: 'news_1',
+            durationSeconds: 300,
+            subscriberCount: 500000,
+            privacyStatus: 'public',
+            uploadStatus: 'uploading',
         }
     ];
 }
