@@ -17,11 +17,12 @@ const mockVideos = [
         description: 'New model update.',
         privacyStatus: 'public',
         uploadStatus: 'processed',
+        embeddable: true,
         thumbnail: 'exists'
     },
     {
         id: 'filtered_private',
-        title: 'Secret AI Video',
+        title: 'Secret AI Video (English)',
         viewCount: 50000,
         channelTitle: 'Secret Channel',
         durationSeconds: 600,
@@ -30,11 +31,12 @@ const mockVideos = [
         description: 'Hidden content.',
         privacyStatus: 'private',
         uploadStatus: 'processed',
+        embeddable: true,
         thumbnail: 'exists'
     },
     {
         id: 'filtered_unprocessed',
-        title: 'Draft AI News',
+        title: 'Draft AI News (English)',
         viewCount: 10000,
         channelTitle: 'News Channel',
         durationSeconds: 300,
@@ -43,20 +45,35 @@ const mockVideos = [
         description: 'Still uploading.',
         privacyStatus: 'public',
         uploadStatus: 'uploading',
+        embeddable: true,
         thumbnail: 'exists'
     },
     {
-        id: 'filtered_no_thumb',
-        title: 'Broken AI Video',
-        viewCount: 50000,
-        channelTitle: 'Bad Channel',
-        durationSeconds: 650,
+        id: 'filtered_non_embeddable',
+        title: 'AI Doc (English)',
+        viewCount: 100000,
+        channelTitle: 'Doc Channel',
+        durationSeconds: 600,
         audioLanguage: 'en',
-        subscriberCount: 400000,
-        description: 'No thumbnail.',
+        subscriberCount: 1000000,
         privacyStatus: 'public',
         uploadStatus: 'processed',
-        thumbnail: null
+        embeddable: false,
+        thumbnail: 'exists'
+    },
+    {
+        id: 'filtered_region_blocked',
+        title: 'AI Review (English)',
+        viewCount: 20000,
+        channelTitle: 'Review Channel',
+        durationSeconds: 400,
+        audioLanguage: 'en',
+        subscriberCount: 400000,
+        privacyStatus: 'public',
+        uploadStatus: 'processed',
+        embeddable: true,
+        regionRestriction: { blocked: ['IN'] },
+        thumbnail: 'exists'
     }
 ];
 
@@ -81,9 +98,14 @@ function filterVideos(videos) {
 
         if (video.subscriberCount !== undefined && video.subscriberCount < 300000) return false;
 
-        // Status Filter
-        if (video.privacyStatus && video.privacyStatus !== 'public') return false;
-        if (video.uploadStatus && video.uploadStatus !== 'processed') return false;
+        // --- Exhaustive Status & Restriction Filter ---
+        if (video.privacyStatus !== 'public') return false;
+        if (video.uploadStatus !== 'processed') return false;
+        if (video.embeddable === false) return false;
+        if (video.regionRestriction?.blocked) {
+            const blocked = video.regionRestriction.blocked;
+            if (blocked.includes('IN') || blocked.includes('US')) return false;
+        }
         if (!video.thumbnail) return false;
 
         return true;
@@ -95,10 +117,10 @@ console.log('Filtered Videos:', filtered.map(v => v.title));
 
 const failedReasons = [];
 if (filtered.length !== 1) failedReasons.push(`Expected 1 video, got ${filtered.length}`);
-if (filtered.some(v => v.id.includes('filtered'))) failedReasons.push('Broken/Private video not filtered');
+if (filtered.some(v => v.id.includes('filtered'))) failedReasons.push('Restricted/Status-failed video not filtered');
 
 if (failedReasons.length === 0) {
-    console.log('✅ TEST PASSED: Link status filters working correctly.');
+    console.log('✅ TEST PASSED: All strict filters (status, embed, region) working correctly.');
 } else {
     console.log('❌ TEST FAILED:', failedReasons.join(', '));
 }
