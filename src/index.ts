@@ -2,6 +2,7 @@ export interface Env {
     YOUTUBE_API_KEY: string;
     RESEND_API_KEY: string;
     RECIPIENT_EMAIL: string;
+    SENT_VIDEOS: KVNamespace;
 }
 
 interface YouTubeVideo {
@@ -22,6 +23,7 @@ interface YouTubeVideo {
     uploadStatus?: string;
     embeddable?: boolean;
     regionRestriction?: any;
+    rejectionReason?: string;
 }
 
 export default {
@@ -66,7 +68,7 @@ export default {
                 <body>
                     <div class="card">
                         <h1>Unsubscribe Request</h1>
-                        <p>To be successfully removed from the AI Dev News daily mailing list, please contact us directly at:</p>
+                        <p>To be successfully removed from the AI Latest News daily mailing list, please contact us directly at:</p>
                         <div style="margin: 24px 0; padding: 12px; background: #f3f4f6; border-radius: 8px; font-weight: 600; color: #4f46e5;">
                             shashankshines@gmail.com
                         </div>
@@ -93,14 +95,38 @@ async function scrapeAndSendEmail(env: Env, isTest: boolean = false) {
 
     logs.push('Starting daily AI YouTube video scraping...');
     try {
-        const videos = await getTopAIVideos(env.YOUTUBE_API_KEY, logs);
+        // Fetch seen video IDs from KV
+        let seenIds: string[] = [];
+        try {
+            const seenData = await env.SENT_VIDEOS.get('history');
+            if (seenData) {
+                seenIds = JSON.parse(seenData);
+                logs.push(`Retrieved ${seenIds.length} previously sent video IDs from KV.`);
+            }
+        } catch (kvError) {
+            logs.push(`Warning: Could not fetch history from KV: ${kvError}`);
+        }
+
+        const videos = await getTopAIVideos(env.YOUTUBE_API_KEY, logs, seenIds);
 
         if (videos.length === 0) {
-            logs.push('No videos found matching the criteria.');
+            logs.push('No videos found matching the criteria (new and within 24h).');
             return { success: false, logs };
         }
 
         const emailResult = await sendEmail(env, videos, logs);
+
+        // After successful send, update history in KV
+        try {
+            const newIds = videos.map(v => v.id);
+            // Keep the last 100 IDs to avoid hitting KV limits (though very unlikely)
+            const updatedHistory = Array.from(new Set([...newIds, ...seenIds])).slice(0, 100);
+            await env.SENT_VIDEOS.put('history', JSON.stringify(updatedHistory));
+            logs.push(`Updated KV history with ${newIds.length} new video IDs.`);
+        } catch (kvError) {
+            logs.push(`Warning: Could not update history in KV: ${kvError}`);
+        }
+
         logs.push(`Successfully sent email with ${videos.length} videos.`);
         return { success: true, videoCount: videos.length, emailResult, logs };
     } catch (error: any) {
@@ -191,6 +217,7 @@ async function getVideoDetails(apiKey: string, videoIds: string[]): Promise<YouT
             privacyStatus: item.status?.privacyStatus,
             uploadStatus: item.status?.uploadStatus,
             embeddable: item.status?.embeddable,
+            rejectionReason: item.status?.rejectionReason,
             regionRestriction: item.contentDetails?.regionRestriction,
         };
     });
@@ -215,9 +242,13 @@ async function getVideoDetails(apiKey: string, videoIds: string[]): Promise<YouT
     return videos;
 }
 
-async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVideo[]> {
-    // Search within the last 72 hours to ensure we catch content from the last few days
-    const publishedAfter = new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString();
+async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] = []): Promise<YouTubeVideo[]> {
+    // Strictly search within the last 24 hours
+    const now = Date.now();
+    const twentyFourHoursAgo = now - 24 * 60 * 60 * 1000;
+    const publishedAfter = new Date(twentyFourHoursAgo).toISOString();
+
+    logs.push(`Searching for videos published after: ${publishedAfter}`);
 
     // Focused search queries for AI DEVELOPMENT news — models, APIs, tools, coding, research
     const searchQueries = [
@@ -328,15 +359,32 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
             // Must be public and fully processed
             if (video.privacyStatus !== 'public') return false;
             if (video.uploadStatus !== 'processed') return false;
+            // Ensure no rejection reason (copyright, etc)
+            if (video.rejectionReason) return false;
             // Ensure embeddable (some videos are blocked from being embedded/shared)
             if (video.embeddable === false) return false;
+
             // Region Restriction check (e.g., blocked in India/US)
-            if (video.regionRestriction?.blocked) {
-                const blocked = video.regionRestriction.blocked;
-                if (blocked.includes('IN') || blocked.includes('US')) return false;
+            if (video.regionRestriction) {
+                const { blocked, allowed } = video.regionRestriction;
+                // If there's an allowed list, our target regions (IN/US) MUST be in it
+                if (allowed) {
+                    if (!allowed.includes('IN') || !allowed.includes('US')) return false;
+                }
+                // If there's a blocked list, our target regions (IN/US) MUST NOT be in it
+                if (blocked) {
+                    if (blocked.includes('IN') || blocked.includes('US')) return false;
+                }
             }
             // Ensure thumbnail exists
             if (!video.thumbnail) return false;
+
+            // 6. Age Filter (Strict 24h check)
+            const pubDate = new Date(video.publishedAt).getTime();
+            if (pubDate < twentyFourHoursAgo) return false;
+
+            // 7. Repetition Filter (Avoid IDs already in KV)
+            if (seenIds.includes(video.id)) return false;
 
             return true;
         });
@@ -357,7 +405,6 @@ async function getTopAIVideos(apiKey: string, logs: string[]): Promise<YouTubeVi
     ]);
 
     // Score videos by a combination of views, recency, and channel quality
-    const now = Date.now();
     const scoredVideos = filteredVideos.map(video => {
         const ageHours = (now - new Date(video.publishedAt).getTime()) / (1000 * 60 * 60);
         const viewsPerHour = video.viewCount / Math.max(ageHours, 1);
@@ -384,7 +431,7 @@ async function sendEmail(env: Env, videos: YouTubeVideo[], logs: string[]) {
     const recipients = env.RECIPIENT_EMAIL.split(',').map(email => email.trim());
 
     logs.push(`Sending individual emails to: ${recipients.join(', ')}`);
-    logs.push(`From: AI Dev News <notifications@resend.dev>`);
+    logs.push(`From: AI Latest News <notifications@resend.dev>`);
 
     const results = [];
     for (const recipient of recipients) {
@@ -397,9 +444,9 @@ async function sendEmail(env: Env, videos: YouTubeVideo[], logs: string[]) {
                     Authorization: `Bearer ${env.RESEND_API_KEY}`,
                 },
                 body: JSON.stringify({
-                    from: 'AI Dev News <notifications@resend.dev>',
+                    from: 'AI Latest News <notifications@resend.dev>',
                     to: [recipient],
-                    subject: `⚡ AI Dev News — Top 10 Videos — ${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}`,
+                    subject: `✨ AI Latest News — Top 10 Videos — ${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}`,
                     html: emailHtml,
                 }),
             });
@@ -513,7 +560,7 @@ function generateEmailHtml(videos: YouTubeVideo[], unsubscribeUrl: string) {
                         <!-- Header -->
                         <tr>
                             <td style="padding: 40px 30px; background: linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7); border-radius: 16px 16px 0 0; text-align: center;">
-                                <h1 style="margin: 0; font-size: 28px; color: #ffffff; font-weight: 700; letter-spacing: -0.5px;">⚡ AI Dev News Daily</h1>
+                                <h1 style="margin: 0; font-size: 28px; color: #ffffff; font-weight: 700; letter-spacing: -0.5px;">✨ AI Latest News</h1>
                                 <p style="margin: 8px 0 0 0; font-size: 15px; color: rgba(255,255,255,0.85);">Top 10 AI development videos — models, tools & breakthroughs</p>
                                 <p style="margin: 6px 0 0 0; font-size: 13px; color: rgba(255,255,255,0.65);">${dateStr}</p>
                             </td>
@@ -545,157 +592,40 @@ function generateEmailHtml(videos: YouTubeVideo[], unsubscribeUrl: string) {
 }
 
 function getMockVideos(): YouTubeVideo[] {
+    const now = new Date();
+    const threeHoursAgo = new Date(now.getTime() - 3 * 60 * 60 * 1000).toISOString();
+    const tenHoursAgo = new Date(now.getTime() - 10 * 60 * 60 * 1000).toISOString();
+
     return [
         {
-            id: 'dQw4w9WgXcQ',
-            title: 'GPT-5 Released? Everything You Need to Know',
-            thumbnail: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg',
-            viewCount: 1500000,
+            id: 'cxcb55zr2Q8', // Latest Fireship AI video
+            title: 'How AI is breaking the SaaS business model...',
+            thumbnail: 'https://i.ytimg.com/vi/cxcb55zr2Q8/maxresdefault.jpg',
+            viewCount: 1512400,
             likeCount: 45000,
-            publishedAt: new Date().toISOString(),
-            channelTitle: 'AI Explained',
-            channelId: 'UC57XajGVB9nN1L-0_y6k4fA',
-            durationSeconds: 720,
-            subscriberCount: 500000,
+            publishedAt: threeHoursAgo,
+            channelTitle: 'Fireship',
+            channelId: 'UCsBjURrP617_EStu12pZ4gQ',
+            durationSeconds: 156,
+            subscriberCount: 3000000,
+            privacyStatus: 'public',
+            uploadStatus: 'processed',
+            embeddable: true,
         },
         {
-            id: 'W6u3oBv_OVM',
-            title: 'How to use AI to 10x your productivity - My Secret Workflow',
-            thumbnail: 'https://i.ytimg.com/vi/W6u3oBv_OVM/maxresdefault.jpg',
-            viewCount: 50000,
+            id: '3Trg5u5_Igs', // Latest Vaibhav Sisinty AI video
+            title: 'I almost got Replaced at my job by AI until…',
+            thumbnail: 'https://i.ytimg.com/vi/3Trg5u5_Igs/maxresdefault.jpg',
+            viewCount: 52100,
             likeCount: 3500,
-            publishedAt: new Date().toISOString(),
+            publishedAt: tenHoursAgo,
             channelTitle: 'Vaibhav Sisinty',
             channelId: 'UClXAalunTPaX1YV185DWUeg',
             durationSeconds: 650,
             subscriberCount: 400000,
-        },
-        {
-            id: 'T-D1K7xqTyA',
-            title: 'New Open Source LLM Beats GPT-4',
-            thumbnail: 'https://i.ytimg.com/vi/T-D1K7xqTyA/maxresdefault.jpg',
-            viewCount: 850000,
-            likeCount: 25000,
-            publishedAt: new Date().toISOString(),
-            channelTitle: 'Matthew Berman',
-            channelId: 'UCyw6LzOatIDV9V7L3CAtLtw',
-            durationSeconds: 900,
-            subscriberCount: 350000,
-        },
-        {
-            id: 'aircAruvnKk',
-            title: 'AI Dev Tools: 10x Your Productivity',
-            thumbnail: 'https://i.ytimg.com/vi/aircAruvnKk/maxresdefault.jpg',
-            viewCount: 300000,
-            likeCount: 12000,
-            publishedAt: new Date().toISOString(),
-            channelTitle: 'Fireship',
-            channelId: 'UCsBjURrP617_EStu12pZ4gQ',
-            durationSeconds: 185,
-            audioLanguage: 'en',
-            defaultLanguage: 'en',
-            description: 'Top 10 AI tools for developers in 2024.',
-            subscriberCount: 2000000,
             privacyStatus: 'public',
             uploadStatus: 'processed',
             embeddable: true,
-        },
-        {
-            id: 'hindi_test_1',
-            title: 'AI क्या है? (What is AI in Hindi)',
-            thumbnail: 'https://i.ytimg.com/vi/hindi_test_1/default.jpg',
-            viewCount: 5000,
-            likeCount: 500,
-            publishedAt: new Date().toISOString(),
-            channelTitle: 'Tech Hindi',
-            channelId: 'hi_1',
-            durationSeconds: 600,
-            audioLanguage: 'hi',
-            defaultLanguage: 'hi',
-            description: 'Artificial Intelligence explained in Hindi.',
-            subscriberCount: 1000000,
-            privacyStatus: 'public',
-            uploadStatus: 'processed',
-            embeddable: true,
-        },
-        {
-            id: 'hindi_test_2',
-            title: 'Top 10 AI Tools in Hindi',
-            thumbnail: 'https://i.ytimg.com/vi/hindi_test_2/default.jpg',
-            viewCount: 2000,
-            likeCount: 200,
-            publishedAt: new Date().toISOString(),
-            channelTitle: 'AI Dev Hindi',
-            channelId: 'hi_2',
-            durationSeconds: 400,
-            audioLanguage: 'hi',
-            defaultLanguage: 'en',
-            description: 'Learn AI tools in Hindi language.',
-            subscriberCount: 500000,
-            privacyStatus: 'public',
-            uploadStatus: 'processed',
-            embeddable: true,
-        },
-        {
-            id: 'private_video',
-            title: 'Top Secret AI Project (English)',
-            thumbnail: 'https://i.ytimg.com/vi/private_video/default.jpg',
-            viewCount: 10000,
-            likeCount: 1000,
-            publishedAt: new Date().toISOString(),
-            channelTitle: 'Leaker AI',
-            channelId: 'leak_1',
-            durationSeconds: 300,
-            subscriberCount: 500000,
-            privacyStatus: 'private',
-            uploadStatus: 'processed',
-            embeddable: true,
-        },
-        {
-            id: 'unprocessed_video',
-            title: 'Fresh AI News (English)',
-            thumbnail: 'https://i.ytimg.com/vi/unprocessed_video/default.jpg',
-            viewCount: 500,
-            likeCount: 50,
-            publishedAt: new Date().toISOString(),
-            channelTitle: 'News AI',
-            channelId: 'news_1',
-            durationSeconds: 300,
-            subscriberCount: 500000,
-            privacyStatus: 'public',
-            uploadStatus: 'uploading',
-            embeddable: true,
-        },
-        {
-            id: 'non_embeddable',
-            title: 'AI Documentary (English)',
-            thumbnail: 'https://i.ytimg.com/vi/non_embeddable/default.jpg',
-            viewCount: 100000,
-            likeCount: 5000,
-            publishedAt: new Date().toISOString(),
-            channelTitle: 'Documentary AI',
-            channelId: 'doc_1',
-            durationSeconds: 600,
-            subscriberCount: 1000000,
-            privacyStatus: 'public',
-            uploadStatus: 'processed',
-            embeddable: false,
-        },
-        {
-            id: 'region_blocked',
-            title: 'AI Model Review (English)',
-            thumbnail: 'https://i.ytimg.com/vi/region_blocked/default.jpg',
-            viewCount: 20000,
-            likeCount: 1000,
-            publishedAt: new Date().toISOString(),
-            channelTitle: 'Review AI',
-            channelId: 'rev_1',
-            durationSeconds: 400,
-            subscriberCount: 400000,
-            privacyStatus: 'public',
-            uploadStatus: 'processed',
-            embeddable: true,
-            regionRestriction: { blocked: ['IN', 'US'] }
         }
     ];
 }

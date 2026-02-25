@@ -7,3 +7,7 @@ crons = ["0 0 * * *"]
 
 [vars]
 RECIPIENT_EMAIL = "shashankshines@gmail.com, shashank.lakhotia1@gmail.com"
+
+[[kv_namespaces]]
+binding = "SENT_VIDEOS"
+id = "fa1405e4b35c4314a71d4ae5421dbb37"
