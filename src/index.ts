@@ -276,9 +276,8 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
     logs.push(`Running ${searchQueries.length} search queries for AI dev news...`);
 
     const searchPromises = [
-        // Prioritize Vaibhav Sisinty's content
-        searchYouTube(apiKey, '@vaibhavsisinty', publishedAfter, 10),
-        searchYouTube(apiKey, 'AI', publishedAfter, 10, 'UClXAalunTPaX1YV185DWUeg'),
+        // Prioritize Vaibhav Sisinty's content (fetch all his latest videos unconditionally)
+        searchYouTube(apiKey, '', publishedAfter, 5, 'UClXAalunTPaX1YV185DWUeg'),
         ...searchQueries.map(query => searchYouTube(apiKey, query, publishedAfter, 15)),
     ];
     const searchResults = await Promise.all(searchPromises);
@@ -287,9 +286,8 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
     const allVideoIds = new Set<string>();
     searchResults.forEach((ids, index) => {
         let queryLabel = '';
-        if (index === 0) queryLabel = '@vaibhavsisinty';
-        else if (index === 1) queryLabel = 'Vaibhav Channel ID Search';
-        else queryLabel = searchQueries[index - 2];
+        if (index === 0) queryLabel = 'Vaibhav Channel Latest';
+        else queryLabel = searchQueries[index - 1];
 
         logs.push(`Query "${queryLabel}": found ${ids.length} results`);
         ids.forEach(id => allVideoIds.add(id));
@@ -325,13 +323,46 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
 
     const filteredVideos = allVideos
         .filter(video => {
+            const isVaibhav = video.channelId === 'UClXAalunTPaX1YV185DWUeg' || video.channelTitle.toLowerCase() === 'vaibhav sisinty';
+
+            // Shared basic checks
+            // 5. Broken Link / Status Filter
+            if (video.privacyStatus !== 'public') return false;
+            if (video.uploadStatus !== 'processed') return false;
+            if (video.rejectionReason) return false;
+            if (video.embeddable === false) return false;
+
+            if (video.regionRestriction) {
+                const { blocked, allowed } = video.regionRestriction;
+                if (allowed) {
+                    if (!allowed.includes('IN') || !allowed.includes('US')) return false;
+                }
+                if (blocked) {
+                    if (blocked.includes('IN') || blocked.includes('US')) return false;
+                }
+            }
+            if (!video.thumbnail) return false;
+
+            // 6. Age Filter (Strict 24h check)
+            const pubDate = new Date(video.publishedAt).getTime();
+            if (pubDate < twentyFourHoursAgo) return false;
+
+            // 7. Repetition Filter (Avoid IDs already in KV)
+            if (seenIds.includes(video.id)) return false;
+
+            // Fast-track Vaibhav's videos: bypass duration, views, AI dev keywords, exclusions, lang, sub count filters
+            if (isVaibhav) {
+                return true;
+            }
+
+            // Normal Filtering for everyone else
             const title = video.title;
             const channel = video.channelTitle;
             const combined = `${title} ${channel} ${video.description || ''}`;
 
             // Minimum 3 minutes — real dev content is longer
             if (video.durationSeconds < 180) return false;
-            // Minimum 100 views (lowered to ensure Vaibhav's newer videos are caught)
+            // Minimum 100 views
             if (video.viewCount < 100) return false;
             // Must pass positive AI dev keyword check
             if (!aiDevKeywords.test(combined)) return false;
@@ -355,37 +386,6 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
             // 4. Subscriber Count Filter (>= 300k)
             if (video.subscriberCount !== undefined && video.subscriberCount < 300000) return false;
 
-            // 5. Broken Link / Status Filter
-            // Must be public and fully processed
-            if (video.privacyStatus !== 'public') return false;
-            if (video.uploadStatus !== 'processed') return false;
-            // Ensure no rejection reason (copyright, etc)
-            if (video.rejectionReason) return false;
-            // Ensure embeddable (some videos are blocked from being embedded/shared)
-            if (video.embeddable === false) return false;
-
-            // Region Restriction check (e.g., blocked in India/US)
-            if (video.regionRestriction) {
-                const { blocked, allowed } = video.regionRestriction;
-                // If there's an allowed list, our target regions (IN/US) MUST be in it
-                if (allowed) {
-                    if (!allowed.includes('IN') || !allowed.includes('US')) return false;
-                }
-                // If there's a blocked list, our target regions (IN/US) MUST NOT be in it
-                if (blocked) {
-                    if (blocked.includes('IN') || blocked.includes('US')) return false;
-                }
-            }
-            // Ensure thumbnail exists
-            if (!video.thumbnail) return false;
-
-            // 6. Age Filter (Strict 24h check)
-            const pubDate = new Date(video.publishedAt).getTime();
-            if (pubDate < twentyFourHoursAgo) return false;
-
-            // 7. Repetition Filter (Avoid IDs already in KV)
-            if (seenIds.includes(video.id)) return false;
-
             return true;
         });
 
@@ -406,6 +406,11 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
 
     // Score videos by a combination of views, recency, and channel quality
     const scoredVideos = filteredVideos.map(video => {
+        const isVaibhav = video.channelId === 'UClXAalunTPaX1YV185DWUeg' || video.channelTitle.toLowerCase() === 'vaibhav sisinty';
+        if (isVaibhav) {
+            return { ...video, score: 999999999 }; // Guarantee top spot
+        }
+
         const ageHours = (now - new Date(video.publishedAt).getTime()) / (1000 * 60 * 60);
         const viewsPerHour = video.viewCount / Math.max(ageHours, 1);
         // Base score: blend of raw views and velocity
