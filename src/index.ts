@@ -407,8 +407,8 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
             const regionalKeywords = /\b(hindi|telugu|tamil|kannada|malayalam|bengali|marathi|gujarati|urdu|punjabi)\b/i;
             if (regionalKeywords.test(title)) return false;
 
-            // 4. Subscriber Count Filter (>= 100k)
-            if (video.subscriberCount !== undefined && video.subscriberCount < 100000) return false;
+            // 4. Subscriber Count Filter (>= 200k)
+            if (video.subscriberCount !== undefined && video.subscriberCount < 200000) return false;
 
             return true;
         });
