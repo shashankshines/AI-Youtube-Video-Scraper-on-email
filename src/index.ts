@@ -52,6 +52,13 @@ export default {
             });
         }
 
+        if (url.searchParams.has('dryrun')) {
+            const result = await scrapeAndSendEmail(env, false, true);
+            return new Response(JSON.stringify(result, null, 2), {
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
         if (url.searchParams.has('unsubscribe')) {
             return new Response(`
                 <!DOCTYPE html>
@@ -83,7 +90,7 @@ export default {
     },
 };
 
-async function scrapeAndSendEmail(env: Env, isTest: boolean = false) {
+async function scrapeAndSendEmail(env: Env, isTest: boolean = false, isDryRun: boolean = false) {
     const logs: string[] = [];
     if (isTest) {
         logs.push('Triggering manual test with mock data...');
@@ -112,6 +119,11 @@ async function scrapeAndSendEmail(env: Env, isTest: boolean = false) {
         if (videos.length === 0) {
             logs.push('No videos found matching the criteria (new and within 24h).');
             return { success: false, logs };
+        }
+
+        if (isDryRun) {
+            logs.push('DRY RUN: skipping email sending and KV update.');
+            return { success: true, isDryRun, videoCount: videos.length, videos, logs };
         }
 
         const emailResult = await sendEmail(env, videos, logs);
