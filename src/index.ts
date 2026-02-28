@@ -340,7 +340,7 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
             // Shared basic checks
             // 5. Broken Link / Status Filter
             if (video.privacyStatus !== 'public') return false;
-            if (video.uploadStatus !== 'processed') return false;
+            if (video.uploadStatus !== 'processed' && video.uploadStatus !== 'uploaded') return false;
             if (video.rejectionReason) return false;
             if (video.embeddable === false) return false;
 
@@ -395,8 +395,8 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
             const regionalKeywords = /\b(hindi|telugu|tamil|kannada|malayalam|bengali|marathi|gujarati|urdu|punjabi)\b/i;
             if (regionalKeywords.test(title)) return false;
 
-            // 4. Subscriber Count Filter (>= 300k)
-            if (video.subscriberCount !== undefined && video.subscriberCount < 300000) return false;
+            // 4. Subscriber Count Filter (>= 30k)
+            if (video.subscriberCount !== undefined && video.subscriberCount < 30000) return false;
 
             return true;
         });
