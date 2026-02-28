@@ -59,6 +59,13 @@ export default {
             });
         }
 
+        if (url.searchParams.has('send_now')) {
+            const result = await scrapeAndSendEmail(env, false, false); // Real fetch, real send, update KV
+            return new Response(JSON.stringify(result, null, 2), {
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
         if (url.searchParams.has('unsubscribe')) {
             return new Response(`
                 <!DOCTYPE html>
