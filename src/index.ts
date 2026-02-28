@@ -255,10 +255,14 @@ async function getVideoDetails(apiKey: string, videoIds: string[]): Promise<YouT
 }
 
 async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] = []): Promise<YouTubeVideo[]> {
-    // Strictly search within the last 24 hours
+    // Strictly search within the last 24 hours for general news
     const now = Date.now();
     const twentyFourHoursAgo = now - 24 * 60 * 60 * 1000;
     const publishedAfter = new Date(twentyFourHoursAgo).toISOString();
+
+    // For Vaibhav, search within the last 7 days so we don't miss anything if he posts less frequently
+    const sevenDaysAgo = now - 7 * 24 * 60 * 60 * 1000;
+    const vaibhavPublishedAfter = new Date(sevenDaysAgo).toISOString();
 
     logs.push(`Searching for videos published after: ${publishedAfter}`);
 
@@ -288,8 +292,8 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
     logs.push(`Running ${searchQueries.length} search queries for AI dev news...`);
 
     const searchPromises = [
-        // Prioritize Vaibhav Sisinty's content (fetch all his latest videos unconditionally)
-        searchYouTube(apiKey, '', publishedAfter, 5, 'UClXAalunTPaX1YV185DWUeg'),
+        // Prioritize Vaibhav Sisinty's content (fetch his latest videos from the last 7 days)
+        searchYouTube(apiKey, '', vaibhavPublishedAfter, 5, 'UClXAalunTPaX1YV185DWUeg'),
         ...searchQueries.map(query => searchYouTube(apiKey, query, publishedAfter, 15)),
     ];
     const searchResults = await Promise.all(searchPromises);
@@ -355,9 +359,10 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
             }
             if (!video.thumbnail) return false;
 
-            // 6. Age Filter (Strict 24h check)
+            // 6. Age Filter (Strict 24h check, except for Vaibhav where we allow 7 days)
             const pubDate = new Date(video.publishedAt).getTime();
-            if (pubDate < twentyFourHoursAgo) return false;
+            if (!isVaibhav && pubDate < twentyFourHoursAgo) return false;
+            if (isVaibhav && pubDate < sevenDaysAgo) return false;
 
             // 7. Repetition Filter (Avoid IDs already in KV)
             if (seenIds.includes(video.id)) return false;
