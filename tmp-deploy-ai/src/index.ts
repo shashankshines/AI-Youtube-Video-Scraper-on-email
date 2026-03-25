@@ -59,6 +59,13 @@ export default {
             });
         }
 
+        if (url.searchParams.has('send_now')) {
+            const result = await scrapeAndSendEmail(env, false, false); // Real fetch, real send, update KV
+            return new Response(JSON.stringify(result, null, 2), {
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
         if (url.searchParams.has('unsubscribe')) {
             return new Response(`
                 <!DOCTYPE html>
@@ -255,10 +262,14 @@ async function getVideoDetails(apiKey: string, videoIds: string[]): Promise<YouT
 }
 
 async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] = []): Promise<YouTubeVideo[]> {
-    // Strictly search within the last 24 hours
+    // Strictly search within the last 24 hours for general news
     const now = Date.now();
     const twentyFourHoursAgo = now - 24 * 60 * 60 * 1000;
     const publishedAfter = new Date(twentyFourHoursAgo).toISOString();
+
+    // For Vaibhav, search within the last 7 days so we don't miss anything if he posts less frequently
+    const sevenDaysAgo = now - 7 * 24 * 60 * 60 * 1000;
+    const vaibhavPublishedAfter = new Date(sevenDaysAgo).toISOString();
 
     logs.push(`Searching for videos published after: ${publishedAfter}`);
 
@@ -288,9 +299,9 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
     logs.push(`Running ${searchQueries.length} search queries for AI dev news...`);
 
     const searchPromises = [
-        // Prioritize Vaibhav Sisinty's content (fetch all his latest videos unconditionally)
-        searchYouTube(apiKey, '', publishedAfter, 5, 'UClXAalunTPaX1YV185DWUeg'),
-        ...searchQueries.map(query => searchYouTube(apiKey, query, publishedAfter, 15)),
+        // Prioritize Vaibhav Sisinty's content (fetch his latest videos from the last 7 days)
+        searchYouTube(apiKey, '', vaibhavPublishedAfter, 5, 'UClXAalunTPaX1YV185DWUeg'),
+        ...searchQueries.map(query => searchYouTube(apiKey, query, publishedAfter, 25)),
     ];
     const searchResults = await Promise.all(searchPromises);
 
@@ -355,14 +366,28 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
             }
             if (!video.thumbnail) return false;
 
-            // 6. Age Filter (Strict 24h check)
+            // 6. Age Filter (Strict 24h check, except for Vaibhav where we allow 7 days)
             const pubDate = new Date(video.publishedAt).getTime();
-            if (pubDate < twentyFourHoursAgo) return false;
+            if (!isVaibhav && pubDate < twentyFourHoursAgo) return false;
+            if (isVaibhav && pubDate < sevenDaysAgo) return false;
 
             // 7. Repetition Filter (Avoid IDs already in KV)
             if (seenIds.includes(video.id)) return false;
 
-            // Fast-track Vaibhav's videos: bypass duration, views, AI dev keywords, exclusions, lang, sub count filters
+            // Global Reels/Shorts filter
+            const lowerTitle = video.title.toLowerCase();
+            const lowerDesc = (video.description || '').toLowerCase();
+            if (lowerTitle.includes('#shorts') || lowerDesc.includes('#shorts') || 
+                lowerTitle.includes('#reels') || lowerDesc.includes('#reels')) {
+                return false;
+            }
+
+            // Minimum 3 minutes — real dev content is longer (also excludes Shorts/Reels)
+            if (video.durationSeconds < 180) {
+                return false;
+            }
+
+            // Fast-track Vaibhav's videos: bypass views, AI dev keywords, exclusions, lang, sub count filters
             if (isVaibhav) {
                 return true;
             }
@@ -372,8 +397,7 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
             const channel = video.channelTitle;
             const combined = `${title} ${channel} ${video.description || ''}`;
 
-            // Minimum 3 minutes — real dev content is longer
-            if (video.durationSeconds < 180) return false;
+            // Minimum 3 minutes — already handled globally above
             // Minimum 100 views
             if (video.viewCount < 100) return false;
             // Must pass positive AI dev keyword check
@@ -395,8 +419,8 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
             const regionalKeywords = /\b(hindi|telugu|tamil|kannada|malayalam|bengali|marathi|gujarati|urdu|punjabi)\b/i;
             if (regionalKeywords.test(title)) return false;
 
-            // 4. Subscriber Count Filter (>= 30k)
-            if (video.subscriberCount !== undefined && video.subscriberCount < 30000) return false;
+            // 4. Subscriber Count Filter (>= 200k)
+            if (video.subscriberCount !== undefined && video.subscriberCount < 200000) return false;
 
             return true;
         });
@@ -413,7 +437,9 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
         'code with ania kubów', 'tech with tim', 'krish naik', 'codebasics',
         'varun mayya', 'tkssharma', 'traversy media', 'deeplizard',
         'statquest', '3blue1brown', 'andrej karpathy', 'lex fridman',
-        'vaibhav sisinty',
+        'vaibhav sisinty', 'marques brownlee', 'mkbhd', 'mrwhosetheboss',
+        'the primeagen', 'networkchuck', 'programming with mosh', 'codewithharry',
+        'hitesh choudhary', 'harkirat singh', 'freecodecamp.org', 'the ai grid'
     ]);
 
     // Score videos by a combination of views, recency, and channel quality
@@ -434,9 +460,9 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
         return { ...video, score };
     });
 
-    // Sort by score and take top 10
+    // Sort by score and take top 20
     scoredVideos.sort((a, b) => b.score - a.score);
-    const topVideos = scoredVideos.slice(0, 10);
+    const topVideos = scoredVideos.slice(0, 20);
 
     return topVideos;
 }
@@ -463,7 +489,7 @@ async function sendEmail(env: Env, videos: YouTubeVideo[], logs: string[]) {
                 body: JSON.stringify({
                     from: 'AI Latest News <notifications@resend.dev>',
                     to: [recipient],
-                    subject: `✨ AI Latest News — Top 10 Videos — ${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}`,
+                    subject: `✨ AI Latest News — Top 20 Videos — ${new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}`,
                     html: emailHtml,
                 }),
             });
@@ -578,7 +604,7 @@ function generateEmailHtml(videos: YouTubeVideo[], unsubscribeUrl: string) {
                         <tr>
                             <td style="padding: 40px 30px; background: linear-gradient(135deg, #4f46e5, #7c3aed, #a855f7); border-radius: 16px 16px 0 0; text-align: center;">
                                 <h1 style="margin: 0; font-size: 28px; color: #ffffff; font-weight: 700; letter-spacing: -0.5px;">✨ AI Latest News</h1>
-                                <p style="margin: 8px 0 0 0; font-size: 15px; color: rgba(255,255,255,0.85);">Top 10 AI development videos — models, tools & breakthroughs</p>
+                                <p style="margin: 8px 0 0 0; font-size: 15px; color: rgba(255,255,255,0.85);">Top 20 AI development videos — models, tools & breakthroughs</p>
                                 <p style="margin: 6px 0 0 0; font-size: 13px; color: rgba(255,255,255,0.65);">${dateStr}</p>
                             </td>
                         </tr>
