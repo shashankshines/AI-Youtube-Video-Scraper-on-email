@@ -3,3 +3,10 @@ node_modules
 dist
 .dev.vars
 .env
+tmp-*
+.config
+.wrangler_home
+deploy_target
+match-test.js
+trigger.js
+test-dryrun.ts
