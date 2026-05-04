@@ -1,0 +1,1932 @@
+0 verbose cli /Users/shashankl/.nvm/versions/node/v20.20.0/bin/node /Users/shashankl/.nvm/versions/node/v20.20.0/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.20.0
+3 silly config load:file:/Users/shashankl/.nvm/versions/node/v20.20.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/shashankl/AI-News-Scraper-Email/.npmrc
+5 silly config load:file:/Users/shashankl/.npmrc
+6 silly config load:file:/Users/shashankl/.nvm/versions/node/v20.20.0/etc/npmrc
+7 verbose title npm install
+8 verbose argv "install" "--cache" "./tmp-npm-cache"
+9 verbose logfile logs-max:10 dir:/Users/shashankl/AI-News-Scraper-Email/tmp-npm-cache/_logs/2026-03-25T05_12_51_728Z-
+10 verbose logfile /Users/shashankl/AI-News-Scraper-Email/tmp-npm-cache/_logs/2026-03-25T05_12_51_728Z-debug-0.log
+11 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+12 silly logfile done cleaning log files
+13 verbose shrinkwrap failed to load node_modules/.package-lock.json EPERM: operation not permitted, stat '/Users/shashankl/AI-News-Scraper-Email/node_modules'
+14 verbose shrinkwrap failed to load node_modules/.package-lock.json EPERM: operation not permitted, stat '/Users/shashankl/AI-News-Scraper-Email/node_modules'
+15 silly idealTree buildDeps
+16 silly fetch manifest @cloudflare/workers-types@^4.0.0
+17 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkers-types cache-miss
+18 http fetch GET 200 https://registry.npmjs.org/npm 190ms
+19 http fetch GET 200 https://registry.npmjs.org/@cloudflare%2fworkers-types 640ms (cache miss)
+20 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkers-types set size:undefined disposed:false
+21 silly fetch manifest typescript@^5.0.0
+22 silly packumentCache full:https://registry.npmjs.org/typescript cache-miss
+23 http fetch GET 200 https://registry.npmjs.org/typescript 224ms (cache miss)
+24 silly packumentCache full:https://registry.npmjs.org/typescript set size:undefined disposed:false
+25 silly fetch manifest wrangler@^4.69.0
+26 silly packumentCache full:https://registry.npmjs.org/wrangler cache-miss
+27 http fetch GET 200 https://registry.npmjs.org/wrangler 259ms (cache miss)
+28 silly packumentCache full:https://registry.npmjs.org/wrangler set size:undefined disposed:false
+29 silly placeDep ROOT @cloudflare/workers-types@4.20260317.1 OK for: ai-news-scraper-email@1.0.0 want: ^4.0.0
+30 silly placeDep ROOT typescript@5.9.3 OK for: ai-news-scraper-email@1.0.0 want: ^5.0.0
+31 silly placeDep ROOT wrangler@4.77.0 OK for: ai-news-scraper-email@1.0.0 want: ^4.69.0
+32 silly fetch manifest blake3-wasm@2.1.5
+33 silly packumentCache full:https://registry.npmjs.org/blake3-wasm cache-miss
+34 silly fetch manifest esbuild@0.27.3
+35 silly packumentCache full:https://registry.npmjs.org/esbuild cache-miss
+36 silly fetch manifest path-to-regexp@6.3.0
+37 silly packumentCache full:https://registry.npmjs.org/path-to-regexp cache-miss
+38 silly fetch manifest unenv@2.0.0-rc.24
+39 silly packumentCache full:https://registry.npmjs.org/unenv cache-miss
+40 silly fetch manifest workerd@1.20260317.1
+41 silly packumentCache full:https://registry.npmjs.org/workerd cache-miss
+42 silly fetch manifest @cloudflare/kv-asset-handler@0.4.2
+43 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fkv-asset-handler cache-miss
+44 silly fetch manifest @cloudflare/unenv-preset@2.16.0
+45 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2funenv-preset cache-miss
+46 silly fetch manifest miniflare@4.20260317.2
+47 silly packumentCache full:https://registry.npmjs.org/miniflare cache-miss
+48 silly fetch manifest fsevents@~2.3.2
+49 silly packumentCache full:https://registry.npmjs.org/fsevents cache-miss
+50 http fetch GET 200 https://registry.npmjs.org/esbuild 76ms (cache miss)
+51 silly packumentCache full:https://registry.npmjs.org/esbuild set size:undefined disposed:false
+52 http fetch GET 200 https://registry.npmjs.org/path-to-regexp 120ms (cache miss)
+53 silly packumentCache full:https://registry.npmjs.org/path-to-regexp set size:undefined disposed:false
+54 http fetch GET 200 https://registry.npmjs.org/fsevents 129ms (cache miss)
+55 silly packumentCache full:https://registry.npmjs.org/fsevents set size:undefined disposed:false
+56 http fetch GET 200 https://registry.npmjs.org/workerd 153ms (cache miss)
+57 silly packumentCache full:https://registry.npmjs.org/workerd set size:undefined disposed:false
+58 http fetch GET 200 https://registry.npmjs.org/blake3-wasm 293ms (cache miss)
+59 silly packumentCache full:https://registry.npmjs.org/blake3-wasm set size:undefined disposed:false
+60 http fetch GET 200 https://registry.npmjs.org/unenv 377ms (cache miss)
+61 silly packumentCache full:https://registry.npmjs.org/unenv set size:undefined disposed:false
+62 http fetch GET 200 https://registry.npmjs.org/miniflare 488ms (cache miss)
+63 silly packumentCache full:https://registry.npmjs.org/miniflare set size:undefined disposed:false
+64 http fetch GET 200 https://registry.npmjs.org/@cloudflare%2funenv-preset 715ms (cache miss)
+65 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2funenv-preset set size:undefined disposed:false
+66 http fetch GET 200 https://registry.npmjs.org/@cloudflare%2fkv-asset-handler 912ms (cache miss)
+67 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fkv-asset-handler set size:undefined disposed:false
+68 silly placeDep ROOT @cloudflare/kv-asset-handler@0.4.2 OK for: wrangler@4.77.0 want: 0.4.2
+69 silly placeDep ROOT @cloudflare/unenv-preset@2.16.0 OK for: wrangler@4.77.0 want: 2.16.0
+70 silly placeDep ROOT unenv@2.0.0-rc.24 OK for: @cloudflare/unenv-preset@2.16.0 want: 2.0.0-rc.24
+71 silly placeDep ROOT blake3-wasm@2.1.5 OK for: wrangler@4.77.0 want: 2.1.5
+72 silly placeDep ROOT esbuild@0.27.3 OK for: wrangler@4.77.0 want: 0.27.3
+73 silly placeDep ROOT fsevents@2.3.3 OK for: wrangler@4.77.0 want: ~2.3.2
+74 silly placeDep ROOT miniflare@4.20260317.2 OK for: wrangler@4.77.0 want: 4.20260317.2
+75 silly placeDep ROOT path-to-regexp@6.3.0 OK for: wrangler@4.77.0 want: 6.3.0
+76 silly placeDep ROOT workerd@1.20260317.1 OK for: wrangler@4.77.0 want: 1.20260317.1
+77 silly fetch manifest pathe@^2.0.3
+78 silly packumentCache full:https://registry.npmjs.org/pathe cache-miss
+79 silly fetch manifest @esbuild/aix-ppc64@0.27.3
+80 silly packumentCache full:https://registry.npmjs.org/@esbuild%2faix-ppc64 cache-miss
+81 silly fetch manifest @esbuild/linux-arm@0.27.3
+82 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-arm cache-miss
+83 silly fetch manifest @esbuild/linux-x64@0.27.3
+84 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-x64 cache-miss
+85 silly fetch manifest @esbuild/sunos-x64@0.27.3
+86 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fsunos-x64 cache-miss
+87 silly fetch manifest @esbuild/win32-x64@0.27.3
+88 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-x64 cache-miss
+89 silly fetch manifest @esbuild/darwin-x64@0.27.3
+90 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fdarwin-x64 cache-miss
+91 silly fetch manifest @esbuild/linux-ia32@0.27.3
+92 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-ia32 cache-miss
+93 silly fetch manifest @esbuild/netbsd-x64@0.27.3
+94 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fnetbsd-x64 cache-miss
+95 http fetch GET 200 https://registry.npmjs.org/pathe 41ms (cache miss)
+96 silly packumentCache full:https://registry.npmjs.org/pathe set size:undefined disposed:false
+97 silly fetch manifest @esbuild/win32-ia32@0.27.3
+98 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-ia32 cache-miss
+99 http fetch GET 200 https://registry.npmjs.org/@esbuild%2faix-ppc64 51ms (cache miss)
+100 silly packumentCache full:https://registry.npmjs.org/@esbuild%2faix-ppc64 set size:undefined disposed:false
+101 silly fetch manifest @esbuild/android-arm@0.27.3
+102 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-arm cache-miss
+103 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-arm 68ms (cache miss)
+104 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-arm set size:undefined disposed:false
+105 silly fetch manifest @esbuild/android-x64@0.27.3
+106 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-x64 cache-miss
+107 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fnetbsd-x64 74ms (cache miss)
+108 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fnetbsd-x64 set size:undefined disposed:false
+109 silly fetch manifest @esbuild/freebsd-x64@0.27.3
+110 silly packumentCache full:https://registry.npmjs.org/@esbuild%2ffreebsd-x64 cache-miss
+111 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-x64 79ms (cache miss)
+112 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-x64 set size:undefined disposed:false
+113 silly fetch manifest @esbuild/linux-arm64@0.27.3
+114 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-arm64 cache-miss
+115 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-ia32 83ms (cache miss)
+116 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-ia32 set size:undefined disposed:false
+117 silly fetch manifest @esbuild/linux-ppc64@0.27.3
+118 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-ppc64 cache-miss
+119 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fsunos-x64 88ms (cache miss)
+120 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fsunos-x64 set size:undefined disposed:false
+121 silly fetch manifest @esbuild/linux-s390x@0.27.3
+122 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-s390x cache-miss
+123 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fdarwin-x64 92ms (cache miss)
+124 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fdarwin-x64 set size:undefined disposed:false
+125 silly fetch manifest @esbuild/openbsd-x64@0.27.3
+126 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenbsd-x64 cache-miss
+127 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-ia32 56ms (cache miss)
+128 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-ia32 set size:undefined disposed:false
+129 silly fetch manifest @esbuild/win32-arm64@0.27.3
+130 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-arm64 cache-miss
+131 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-arm 57ms (cache miss)
+132 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-arm set size:undefined disposed:false
+133 silly fetch manifest @esbuild/darwin-arm64@0.27.3
+134 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fdarwin-arm64 cache-miss
+135 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-x64 79ms (cache miss)
+136 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-x64 set size:undefined disposed:false
+137 silly fetch manifest @esbuild/netbsd-arm64@0.27.3
+138 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fnetbsd-arm64 cache-miss
+139 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-ppc64 66ms (cache miss)
+140 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-ppc64 set size:undefined disposed:false
+141 silly fetch manifest @esbuild/android-arm64@0.27.3
+142 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-arm64 cache-miss
+143 http fetch GET 200 https://registry.npmjs.org/@esbuild%2ffreebsd-x64 77ms (cache miss)
+144 silly packumentCache full:https://registry.npmjs.org/@esbuild%2ffreebsd-x64 set size:undefined disposed:false
+145 silly fetch manifest @esbuild/freebsd-arm64@0.27.3
+146 silly packumentCache full:https://registry.npmjs.org/@esbuild%2ffreebsd-arm64 cache-miss
+147 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-arm64 74ms (cache miss)
+148 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-arm64 set size:undefined disposed:false
+149 silly fetch manifest @esbuild/linux-loong64@0.27.3
+150 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-loong64 cache-miss
+151 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-s390x 70ms (cache miss)
+152 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-s390x set size:undefined disposed:false
+153 silly fetch manifest @esbuild/linux-riscv64@0.27.3
+154 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-riscv64 cache-miss
+155 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-arm64 70ms (cache miss)
+156 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-arm64 set size:undefined disposed:false
+157 silly fetch manifest @esbuild/openbsd-arm64@0.27.3
+158 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenbsd-arm64 cache-miss
+159 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenbsd-x64 78ms (cache miss)
+160 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenbsd-x64 set size:undefined disposed:false
+161 silly fetch manifest @esbuild/linux-mips64el@0.27.3
+162 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-mips64el cache-miss
+163 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fdarwin-arm64 82ms (cache miss)
+164 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fdarwin-arm64 set size:undefined disposed:false
+165 silly fetch manifest @esbuild/openharmony-arm64@0.27.3
+166 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenharmony-arm64 cache-miss
+167 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fnetbsd-arm64 53ms (cache miss)
+168 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fnetbsd-arm64 set size:undefined disposed:false
+169 silly fetch manifest @cspotcode/source-map-support@0.8.1
+170 silly packumentCache full:https://registry.npmjs.org/@cspotcode%2fsource-map-support cache-miss
+171 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-arm64 83ms (cache miss)
+172 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fandroid-arm64 set size:undefined disposed:false
+173 silly fetch manifest sharp@^0.34.5
+174 silly packumentCache full:https://registry.npmjs.org/sharp cache-miss
+175 http fetch GET 200 https://registry.npmjs.org/@esbuild%2ffreebsd-arm64 86ms (cache miss)
+176 silly packumentCache full:https://registry.npmjs.org/@esbuild%2ffreebsd-arm64 set size:undefined disposed:false
+177 silly fetch manifest undici@7.24.4
+178 silly packumentCache full:https://registry.npmjs.org/undici cache-miss
+179 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenbsd-arm64 74ms (cache miss)
+180 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenbsd-arm64 set size:undefined disposed:false
+181 silly fetch manifest ws@8.18.0
+182 silly packumentCache full:https://registry.npmjs.org/ws cache-miss
+183 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-mips64el 75ms (cache miss)
+184 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-mips64el set size:undefined disposed:false
+185 silly fetch manifest youch@4.1.0-beta.10
+186 silly packumentCache full:https://registry.npmjs.org/youch cache-miss
+187 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-riscv64 93ms (cache miss)
+188 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-riscv64 set size:undefined disposed:false
+189 silly fetch manifest @cloudflare/workerd-darwin-arm64@1.20260317.1
+190 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-darwin-arm64 cache-miss
+191 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-loong64 100ms (cache miss)
+192 silly packumentCache full:https://registry.npmjs.org/@esbuild%2flinux-loong64 set size:undefined disposed:false
+193 silly fetch manifest @cloudflare/workerd-darwin-64@1.20260317.1
+194 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-darwin-64 cache-miss
+195 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenharmony-arm64 61ms (cache miss)
+196 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fopenharmony-arm64 set size:undefined disposed:false
+197 silly fetch manifest @cloudflare/workerd-linux-arm64@1.20260317.1
+198 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-linux-arm64 cache-miss
+199 http fetch GET 200 https://registry.npmjs.org/sharp 55ms (cache miss)
+200 silly packumentCache full:https://registry.npmjs.org/sharp set size:undefined disposed:false
+201 silly fetch manifest @cloudflare/workerd-linux-64@1.20260317.1
+202 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-linux-64 cache-miss
+203 http fetch GET 200 https://registry.npmjs.org/youch 55ms (cache miss)
+204 silly packumentCache full:https://registry.npmjs.org/youch set size:undefined disposed:false
+205 silly fetch manifest @cloudflare/workerd-windows-64@1.20260317.1
+206 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-windows-64 cache-miss
+207 http fetch GET 200 https://registry.npmjs.org/ws 61ms (cache miss)
+208 silly packumentCache full:https://registry.npmjs.org/ws set size:undefined disposed:false
+209 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-x64 319ms (cache miss)
+210 silly packumentCache full:https://registry.npmjs.org/@esbuild%2fwin32-x64 set size:undefined disposed:false
+211 http fetch GET 200 https://registry.npmjs.org/undici 79ms (cache miss)
+212 silly packumentCache full:https://registry.npmjs.org/undici set size:undefined disposed:false
+213 http fetch GET 200 https://registry.npmjs.org/@cloudflare%2fworkerd-linux-64 327ms (cache miss)
+214 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-linux-64 set size:undefined disposed:false
+215 http fetch GET 200 https://registry.npmjs.org/@cloudflare%2fworkerd-linux-arm64 514ms (cache miss)
+216 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-linux-arm64 set size:undefined disposed:false
+217 http fetch GET 200 https://registry.npmjs.org/@cloudflare%2fworkerd-windows-64 485ms (cache miss)
+218 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-windows-64 set size:undefined disposed:false
+219 http fetch GET 200 https://registry.npmjs.org/@cloudflare%2fworkerd-darwin-arm64 593ms (cache miss)
+220 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-darwin-arm64 set size:undefined disposed:false
+221 http fetch GET 200 https://registry.npmjs.org/@cspotcode%2fsource-map-support 831ms (cache miss)
+222 silly packumentCache full:https://registry.npmjs.org/@cspotcode%2fsource-map-support set size:undefined disposed:false
+223 http fetch GET 200 https://registry.npmjs.org/@cloudflare%2fworkerd-darwin-64 1304ms (cache miss)
+224 silly packumentCache full:https://registry.npmjs.org/@cloudflare%2fworkerd-darwin-64 set size:undefined disposed:false
+225 silly placeDep ROOT @esbuild/aix-ppc64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+226 silly placeDep ROOT @esbuild/android-arm@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+227 silly placeDep ROOT @esbuild/android-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+228 silly placeDep ROOT @esbuild/android-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+229 silly placeDep ROOT @esbuild/darwin-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+230 silly placeDep ROOT @esbuild/darwin-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+231 silly placeDep ROOT @esbuild/freebsd-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+232 silly placeDep ROOT @esbuild/freebsd-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+233 silly placeDep ROOT @esbuild/linux-arm@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+234 silly placeDep ROOT @esbuild/linux-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+235 silly placeDep ROOT @esbuild/linux-ia32@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+236 silly placeDep ROOT @esbuild/linux-loong64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+237 silly placeDep ROOT @esbuild/linux-mips64el@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+238 silly placeDep ROOT @esbuild/linux-ppc64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+239 silly placeDep ROOT @esbuild/linux-riscv64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+240 silly placeDep ROOT @esbuild/linux-s390x@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+241 silly placeDep ROOT @esbuild/linux-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+242 silly placeDep ROOT @esbuild/netbsd-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+243 silly placeDep ROOT @esbuild/netbsd-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+244 silly placeDep ROOT @esbuild/openbsd-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+245 silly placeDep ROOT @esbuild/openbsd-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+246 silly placeDep ROOT @esbuild/openharmony-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+247 silly placeDep ROOT @esbuild/sunos-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+248 silly placeDep ROOT @esbuild/win32-arm64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+249 silly placeDep ROOT @esbuild/win32-ia32@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+250 silly placeDep ROOT @esbuild/win32-x64@0.27.3 OK for: esbuild@0.27.3 want: 0.27.3
+251 silly fetch manifest bufferutil@^4.0.1
+252 silly packumentCache full:https://registry.npmjs.org/bufferutil cache-miss
+253 http fetch GET 200 https://registry.npmjs.org/bufferutil 42ms (cache miss)
+254 silly packumentCache full:https://registry.npmjs.org/bufferutil set size:undefined disposed:false
+255 silly fetch manifest utf-8-validate@>=5.0.2
+256 silly packumentCache full:https://registry.npmjs.org/utf-8-validate cache-miss
+257 http fetch GET 200 https://registry.npmjs.org/utf-8-validate 45ms (cache miss)
+258 silly packumentCache full:https://registry.npmjs.org/utf-8-validate set size:undefined disposed:false
+259 silly placeDep ROOT @cspotcode/source-map-support@0.8.1 OK for: miniflare@4.20260317.2 want: 0.8.1
+260 silly placeDep ROOT sharp@0.34.5 OK for: miniflare@4.20260317.2 want: ^0.34.5
+261 silly placeDep ROOT undici@7.24.4 OK for: miniflare@4.20260317.2 want: 7.24.4
+262 silly placeDep ROOT ws@8.18.0 OK for: miniflare@4.20260317.2 want: 8.18.0
+263 silly placeDep ROOT youch@4.1.0-beta.10 OK for: miniflare@4.20260317.2 want: 4.1.0-beta.10
+264 silly fetch manifest @jridgewell/trace-mapping@0.3.9
+265 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2ftrace-mapping cache-miss
+266 silly fetch manifest semver@^7.7.3
+267 silly packumentCache full:https://registry.npmjs.org/semver cache-miss
+268 silly fetch manifest @img/colour@^1.0.0
+269 silly packumentCache full:https://registry.npmjs.org/@img%2fcolour cache-miss
+270 silly fetch manifest detect-libc@^2.1.2
+271 silly packumentCache full:https://registry.npmjs.org/detect-libc cache-miss
+272 silly fetch manifest @img/sharp-wasm32@0.34.5
+273 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-wasm32 cache-miss
+274 silly fetch manifest @img/sharp-linux-arm@0.34.5
+275 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-arm cache-miss
+276 silly fetch manifest @img/sharp-linux-x64@0.34.5
+277 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-x64 cache-miss
+278 silly fetch manifest @img/sharp-win32-x64@0.34.5
+279 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-win32-x64 cache-miss
+280 silly fetch manifest @img/sharp-darwin-x64@0.34.5
+281 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-darwin-x64 cache-miss
+282 http fetch GET 200 https://registry.npmjs.org/detect-libc 45ms (cache miss)
+283 silly packumentCache full:https://registry.npmjs.org/detect-libc set size:undefined disposed:false
+284 silly fetch manifest @img/sharp-win32-ia32@0.34.5
+285 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-win32-ia32 cache-miss
+286 http fetch GET 200 https://registry.npmjs.org/semver 49ms (cache miss)
+287 silly packumentCache full:https://registry.npmjs.org/semver set size:undefined disposed:false
+288 silly fetch manifest @img/sharp-linux-arm64@0.34.5
+289 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-arm64 cache-miss
+290 http fetch GET 200 https://registry.npmjs.org/@img%2fcolour 62ms (cache miss)
+291 silly packumentCache full:https://registry.npmjs.org/@img%2fcolour set size:undefined disposed:false
+292 silly fetch manifest @img/sharp-linux-ppc64@0.34.5
+293 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-ppc64 cache-miss
+294 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-darwin-x64 59ms (cache miss)
+295 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-darwin-x64 set size:undefined disposed:false
+296 silly fetch manifest @img/sharp-linux-s390x@0.34.5
+297 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-s390x cache-miss
+298 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-win32-x64 66ms (cache miss)
+299 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-win32-x64 set size:undefined disposed:false
+300 silly fetch manifest @img/sharp-win32-arm64@0.34.5
+301 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-win32-arm64 cache-miss
+302 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-arm 68ms (cache miss)
+303 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-arm set size:undefined disposed:false
+304 silly fetch manifest @img/sharp-darwin-arm64@0.34.5
+305 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-darwin-arm64 cache-miss
+306 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-x64 72ms (cache miss)
+307 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-x64 set size:undefined disposed:false
+308 silly fetch manifest @img/sharp-linux-riscv64@0.34.5
+309 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-riscv64 cache-miss
+310 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2ftrace-mapping 79ms (cache miss)
+311 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2ftrace-mapping set size:undefined disposed:false
+312 silly fetch manifest @img/sharp-linuxmusl-x64@0.34.5
+313 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linuxmusl-x64 cache-miss
+314 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-arm64 57ms (cache miss)
+315 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-arm64 set size:undefined disposed:false
+316 silly fetch manifest @img/sharp-linuxmusl-arm64@0.34.5
+317 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linuxmusl-arm64 cache-miss
+318 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-win32-arm64 55ms (cache miss)
+319 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-win32-arm64 set size:undefined disposed:false
+320 silly fetch manifest @img/sharp-libvips-linux-arm@1.2.4
+321 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-arm cache-miss
+322 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-darwin-arm64 59ms (cache miss)
+323 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-darwin-arm64 set size:undefined disposed:false
+324 silly fetch manifest @img/sharp-libvips-linux-x64@1.2.4
+325 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-x64 cache-miss
+326 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linuxmusl-x64 60ms (cache miss)
+327 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linuxmusl-x64 set size:undefined disposed:false
+328 silly fetch manifest @img/sharp-libvips-darwin-x64@1.2.4
+329 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-darwin-x64 cache-miss
+330 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-x64 49ms (cache miss)
+331 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-x64 set size:undefined disposed:false
+332 silly fetch manifest @img/sharp-libvips-linux-arm64@1.2.4
+333 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-arm64 cache-miss
+334 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-arm 59ms (cache miss)
+335 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-arm set size:undefined disposed:false
+336 silly fetch manifest @img/sharp-libvips-linux-ppc64@1.2.4
+337 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-ppc64 cache-miss
+338 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-darwin-x64 59ms (cache miss)
+339 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-darwin-x64 set size:undefined disposed:false
+340 silly fetch manifest @img/sharp-libvips-linux-s390x@1.2.4
+341 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-s390x cache-miss
+342 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-arm64 53ms (cache miss)
+343 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-arm64 set size:undefined disposed:false
+344 silly fetch manifest @img/sharp-libvips-darwin-arm64@1.2.4
+345 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-darwin-arm64 cache-miss
+346 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-ppc64 220ms (cache miss)
+347 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-ppc64 set size:undefined disposed:false
+348 silly fetch manifest @img/sharp-libvips-linux-riscv64@1.2.4
+349 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-riscv64 cache-miss
+350 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-darwin-arm64 57ms (cache miss)
+351 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-darwin-arm64 set size:undefined disposed:false
+352 silly fetch manifest @img/sharp-libvips-linuxmusl-x64@1.2.4
+353 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linuxmusl-x64 cache-miss
+354 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-s390x 229ms (cache miss)
+355 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-s390x set size:undefined disposed:false
+356 silly fetch manifest @img/sharp-libvips-linuxmusl-arm64@1.2.4
+357 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linuxmusl-arm64 cache-miss
+358 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-wasm32 315ms (cache miss)
+359 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-wasm32 set size:undefined disposed:false
+360 silly fetch manifest cookie@^1.0.2
+361 silly packumentCache full:https://registry.npmjs.org/cookie cache-miss
+362 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linuxmusl-x64 53ms (cache miss)
+363 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linuxmusl-x64 set size:undefined disposed:false
+364 silly fetch manifest youch-core@^0.3.3
+365 silly packumentCache full:https://registry.npmjs.org/youch-core cache-miss
+366 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linuxmusl-arm64 62ms (cache miss)
+367 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linuxmusl-arm64 set size:undefined disposed:false
+368 silly fetch manifest @poppinss/colors@^4.1.5
+369 silly packumentCache full:https://registry.npmjs.org/@poppinss%2fcolors cache-miss
+370 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-win32-ia32 313ms (cache miss)
+371 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-win32-ia32 set size:undefined disposed:false
+372 silly fetch manifest @poppinss/dumper@^0.6.4
+373 silly packumentCache full:https://registry.npmjs.org/@poppinss%2fdumper cache-miss
+374 http fetch GET 200 https://registry.npmjs.org/cookie 44ms (cache miss)
+375 silly packumentCache full:https://registry.npmjs.org/cookie set size:undefined disposed:false
+376 silly fetch manifest @speed-highlight/core@^1.2.7
+377 silly packumentCache full:https://registry.npmjs.org/@speed-highlight%2fcore cache-miss
+378 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linux-riscv64 321ms (cache miss)
+379 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linux-riscv64 set size:undefined disposed:false
+380 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-s390x 265ms (cache miss)
+381 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-s390x set size:undefined disposed:false
+382 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-riscv64 233ms (cache miss)
+383 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-riscv64 set size:undefined disposed:false
+384 http fetch GET 200 https://registry.npmjs.org/youch-core 293ms (cache miss)
+385 silly packumentCache full:https://registry.npmjs.org/youch-core set size:undefined disposed:false
+386 http fetch GET 200 https://registry.npmjs.org/@poppinss%2fcolors 339ms (cache miss)
+387 silly packumentCache full:https://registry.npmjs.org/@poppinss%2fcolors set size:undefined disposed:false
+388 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-libvips-linux-ppc64 567ms (cache miss)
+389 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-libvips-linux-ppc64 set size:undefined disposed:false
+390 http fetch GET 200 https://registry.npmjs.org/@speed-highlight%2fcore 500ms (cache miss)
+391 silly packumentCache full:https://registry.npmjs.org/@speed-highlight%2fcore set size:undefined disposed:false
+392 http fetch GET 200 https://registry.npmjs.org/@img%2fsharp-linuxmusl-arm64 817ms (cache miss)
+393 silly packumentCache full:https://registry.npmjs.org/@img%2fsharp-linuxmusl-arm64 set size:undefined disposed:false
+394 http fetch GET 200 https://registry.npmjs.org/@poppinss%2fdumper 800ms (cache miss)
+395 silly packumentCache full:https://registry.npmjs.org/@poppinss%2fdumper set size:undefined disposed:false
+396 silly placeDep ROOT @jridgewell/trace-mapping@0.3.9 OK for: @cspotcode/source-map-support@0.8.1 want: 0.3.9
+397 silly fetch manifest @jridgewell/resolve-uri@^3.0.3
+398 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fresolve-uri cache-miss
+399 silly fetch manifest @jridgewell/sourcemap-codec@^1.4.10
+400 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fsourcemap-codec cache-miss
+401 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fsourcemap-codec 56ms (cache miss)
+402 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fsourcemap-codec set size:undefined disposed:false
+403 http fetch GET 200 https://registry.npmjs.org/@jridgewell%2fresolve-uri 69ms (cache miss)
+404 silly packumentCache full:https://registry.npmjs.org/@jridgewell%2fresolve-uri set size:undefined disposed:false
+405 silly placeDep ROOT @jridgewell/resolve-uri@3.1.2 OK for: @jridgewell/trace-mapping@0.3.9 want: ^3.0.3
+406 silly placeDep ROOT @jridgewell/sourcemap-codec@1.5.5 OK for: @jridgewell/trace-mapping@0.3.9 want: ^1.4.10
+407 silly placeDep ROOT @img/colour@1.1.0 OK for: sharp@0.34.5 want: ^1.0.0
+408 silly placeDep ROOT @img/sharp-darwin-arm64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+409 silly placeDep ROOT @img/sharp-darwin-x64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+410 silly placeDep ROOT @img/sharp-libvips-darwin-arm64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+411 silly placeDep ROOT @img/sharp-libvips-darwin-x64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+412 silly placeDep ROOT @img/sharp-libvips-linux-arm@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+413 silly placeDep ROOT @img/sharp-libvips-linux-arm64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+414 silly placeDep ROOT @img/sharp-libvips-linux-ppc64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+415 silly placeDep ROOT @img/sharp-libvips-linux-riscv64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+416 silly placeDep ROOT @img/sharp-libvips-linux-s390x@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+417 silly placeDep ROOT @img/sharp-libvips-linux-x64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+418 silly placeDep ROOT @img/sharp-libvips-linuxmusl-arm64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+419 silly placeDep ROOT @img/sharp-libvips-linuxmusl-x64@1.2.4 OK for: sharp@0.34.5 want: 1.2.4
+420 silly placeDep ROOT @img/sharp-linux-arm@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+421 silly placeDep ROOT @img/sharp-linux-arm64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+422 silly placeDep ROOT @img/sharp-linux-ppc64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+423 silly placeDep ROOT @img/sharp-linux-riscv64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+424 silly placeDep ROOT @img/sharp-linux-s390x@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+425 silly placeDep ROOT @img/sharp-linux-x64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+426 silly placeDep ROOT @img/sharp-linuxmusl-arm64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+427 silly placeDep ROOT @img/sharp-linuxmusl-x64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+428 silly placeDep ROOT @img/sharp-wasm32@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+429 silly placeDep ROOT @img/sharp-win32-arm64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+430 silly placeDep ROOT @img/sharp-win32-ia32@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+431 silly placeDep ROOT @img/sharp-win32-x64@0.34.5 OK for: sharp@0.34.5 want: 0.34.5
+432 silly placeDep ROOT detect-libc@2.1.2 OK for: sharp@0.34.5 want: ^2.1.2
+433 silly placeDep ROOT semver@7.7.4 OK for: sharp@0.34.5 want: ^7.7.3
+434 silly fetch manifest @emnapi/runtime@^1.7.0
+435 silly packumentCache full:https://registry.npmjs.org/@emnapi%2fruntime cache-miss
+436 http fetch GET 200 https://registry.npmjs.org/@emnapi%2fruntime 56ms (cache miss)
+437 silly packumentCache full:https://registry.npmjs.org/@emnapi%2fruntime set size:undefined disposed:false
+438 silly placeDep ROOT @emnapi/runtime@1.9.1 OK for: @img/sharp-wasm32@0.34.5 want: ^1.7.0
+439 silly fetch manifest tslib@^2.4.0
+440 silly packumentCache full:https://registry.npmjs.org/tslib cache-miss
+441 http fetch GET 200 https://registry.npmjs.org/tslib 48ms (cache miss)
+442 silly packumentCache full:https://registry.npmjs.org/tslib set size:undefined disposed:false
+443 silly placeDep ROOT tslib@2.8.1 OK for: @emnapi/runtime@1.9.1 want: ^2.4.0
+444 silly placeDep ROOT pathe@2.0.3 OK for: unenv@2.0.0-rc.24 want: ^2.0.3
+445 silly placeDep ROOT @cloudflare/workerd-darwin-64@1.20260317.1 OK for: workerd@1.20260317.1 want: 1.20260317.1
+446 silly placeDep ROOT @cloudflare/workerd-darwin-arm64@1.20260317.1 OK for: workerd@1.20260317.1 want: 1.20260317.1
+447 silly placeDep ROOT @cloudflare/workerd-linux-64@1.20260317.1 OK for: workerd@1.20260317.1 want: 1.20260317.1
+448 silly placeDep ROOT @cloudflare/workerd-linux-arm64@1.20260317.1 OK for: workerd@1.20260317.1 want: 1.20260317.1
+449 silly placeDep ROOT @cloudflare/workerd-windows-64@1.20260317.1 OK for: workerd@1.20260317.1 want: 1.20260317.1
+450 silly placeDep ROOT @poppinss/colors@4.1.6 OK for: youch@4.1.0-beta.10 want: ^4.1.5
+451 silly placeDep ROOT @poppinss/dumper@0.6.5 OK for: youch@4.1.0-beta.10 want: ^0.6.4
+452 silly placeDep ROOT @speed-highlight/core@1.2.15 OK for: youch@4.1.0-beta.10 want: ^1.2.7
+453 silly placeDep ROOT cookie@1.1.1 OK for: youch@4.1.0-beta.10 want: ^1.0.2
+454 silly placeDep ROOT youch-core@0.3.3 OK for: youch@4.1.0-beta.10 want: ^0.3.3
+455 silly fetch manifest kleur@^4.1.5
+456 silly packumentCache full:https://registry.npmjs.org/kleur cache-miss
+457 silly fetch manifest supports-color@^10.0.0
+458 silly packumentCache full:https://registry.npmjs.org/supports-color cache-miss
+459 silly fetch manifest @sindresorhus/is@^7.0.2
+460 silly packumentCache full:https://registry.npmjs.org/@sindresorhus%2fis cache-miss
+461 silly fetch manifest @poppinss/exception@^1.2.2
+462 silly packumentCache full:https://registry.npmjs.org/@poppinss%2fexception cache-miss
+463 silly fetch manifest error-stack-parser-es@^1.0.5
+464 silly packumentCache full:https://registry.npmjs.org/error-stack-parser-es cache-miss
+465 http fetch GET 200 https://registry.npmjs.org/supports-color 44ms (cache miss)
+466 silly packumentCache full:https://registry.npmjs.org/supports-color set size:undefined disposed:false
+467 http fetch GET 200 https://registry.npmjs.org/kleur 55ms (cache miss)
+468 silly packumentCache full:https://registry.npmjs.org/kleur set size:undefined disposed:false
+469 http fetch GET 200 https://registry.npmjs.org/@sindresorhus%2fis 64ms (cache miss)
+470 silly packumentCache full:https://registry.npmjs.org/@sindresorhus%2fis set size:undefined disposed:false
+471 http fetch GET 200 https://registry.npmjs.org/error-stack-parser-es 286ms (cache miss)
+472 silly packumentCache full:https://registry.npmjs.org/error-stack-parser-es set size:undefined disposed:false
+473 http fetch GET 200 https://registry.npmjs.org/@poppinss%2fexception 1378ms (cache miss)
+474 silly packumentCache full:https://registry.npmjs.org/@poppinss%2fexception set size:undefined disposed:false
+475 silly placeDep ROOT kleur@4.1.5 OK for: @poppinss/colors@4.1.6 want: ^4.1.5
+476 silly placeDep ROOT @sindresorhus/is@7.2.0 OK for: @poppinss/dumper@0.6.5 want: ^7.0.2
+477 silly placeDep ROOT supports-color@10.2.2 OK for: @poppinss/dumper@0.6.5 want: ^10.0.0
+478 silly placeDep ROOT @poppinss/exception@1.2.3 OK for: youch-core@0.3.3 want: ^1.2.2
+479 silly placeDep ROOT error-stack-parser-es@1.0.5 OK for: youch-core@0.3.3 want: ^1.0.5
+480 silly reify moves {}
+481 silly audit bulk request {
+481 silly audit   '@cloudflare/workers-types': [ '4.20260317.1' ],
+481 silly audit   typescript: [ '5.9.3' ],
+481 silly audit   wrangler: [ '4.77.0' ],
+481 silly audit   '@cloudflare/kv-asset-handler': [ '0.4.2' ],
+481 silly audit   '@cloudflare/unenv-preset': [ '2.16.0' ],
+481 silly audit   unenv: [ '2.0.0-rc.24' ],
+481 silly audit   'blake3-wasm': [ '2.1.5' ],
+481 silly audit   esbuild: [ '0.27.3' ],
+481 silly audit   fsevents: [ '2.3.3' ],
+481 silly audit   miniflare: [ '4.20260317.2' ],
+481 silly audit   'path-to-regexp': [ '6.3.0' ],
+481 silly audit   workerd: [ '1.20260317.1' ],
+481 silly audit   '@esbuild/aix-ppc64': [ '0.27.3' ],
+481 silly audit   '@esbuild/android-arm': [ '0.27.3' ],
+481 silly audit   '@esbuild/android-arm64': [ '0.27.3' ],
+481 silly audit   '@esbuild/android-x64': [ '0.27.3' ],
+481 silly audit   '@esbuild/darwin-arm64': [ '0.27.3' ],
+481 silly audit   '@esbuild/darwin-x64': [ '0.27.3' ],
+481 silly audit   '@esbuild/freebsd-arm64': [ '0.27.3' ],
+481 silly audit   '@esbuild/freebsd-x64': [ '0.27.3' ],
+481 silly audit   '@esbuild/linux-arm': [ '0.27.3' ],
+481 silly audit   '@esbuild/linux-arm64': [ '0.27.3' ],
+481 silly audit   '@esbuild/linux-ia32': [ '0.27.3' ],
+481 silly audit   '@esbuild/linux-loong64': [ '0.27.3' ],
+481 silly audit   '@esbuild/linux-mips64el': [ '0.27.3' ],
+481 silly audit   '@esbuild/linux-ppc64': [ '0.27.3' ],
+481 silly audit   '@esbuild/linux-riscv64': [ '0.27.3' ],
+481 silly audit   '@esbuild/linux-s390x': [ '0.27.3' ],
+481 silly audit   '@esbuild/linux-x64': [ '0.27.3' ],
+481 silly audit   '@esbuild/netbsd-arm64': [ '0.27.3' ],
+481 silly audit   '@esbuild/netbsd-x64': [ '0.27.3' ],
+481 silly audit   '@esbuild/openbsd-arm64': [ '0.27.3' ],
+481 silly audit   '@esbuild/openbsd-x64': [ '0.27.3' ],
+481 silly audit   '@esbuild/openharmony-arm64': [ '0.27.3' ],
+481 silly audit   '@esbuild/sunos-x64': [ '0.27.3' ],
+481 silly audit   '@esbuild/win32-arm64': [ '0.27.3' ],
+481 silly audit   '@esbuild/win32-ia32': [ '0.27.3' ],
+481 silly audit   '@esbuild/win32-x64': [ '0.27.3' ],
+481 silly audit   '@cspotcode/source-map-support': [ '0.8.1' ],
+481 silly audit   sharp: [ '0.34.5' ],
+481 silly audit   undici: [ '7.24.4' ],
+481 silly audit   ws: [ '8.18.0' ],
+481 silly audit   youch: [ '4.1.0-beta.10' ],
+481 silly audit   '@jridgewell/trace-mapping': [ '0.3.9' ],
+481 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+481 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+481 silly audit   '@img/colour': [ '1.1.0' ],
+481 silly audit   '@img/sharp-darwin-arm64': [ '0.34.5' ],
+481 silly audit   '@img/sharp-darwin-x64': [ '0.34.5' ],
+481 silly audit   '@img/sharp-libvips-darwin-arm64': [ '1.2.4' ],
+481 silly audit   '@img/sharp-libvips-darwin-x64': [ '1.2.4' ],
+481 silly audit   '@img/sharp-libvips-linux-arm': [ '1.2.4' ],
+481 silly audit   '@img/sharp-libvips-linux-arm64': [ '1.2.4' ],
+481 silly audit   '@img/sharp-libvips-linux-ppc64': [ '1.2.4' ],
+481 silly audit   '@img/sharp-libvips-linux-riscv64': [ '1.2.4' ],
+481 silly audit   '@img/sharp-libvips-linux-s390x': [ '1.2.4' ],
+481 silly audit   '@img/sharp-libvips-linux-x64': [ '1.2.4' ],
+481 silly audit   '@img/sharp-libvips-linuxmusl-arm64': [ '1.2.4' ],
+481 silly audit   '@img/sharp-libvips-linuxmusl-x64': [ '1.2.4' ],
+481 silly audit   '@img/sharp-linux-arm': [ '0.34.5' ],
+481 silly audit   '@img/sharp-linux-arm64': [ '0.34.5' ],
+481 silly audit   '@img/sharp-linux-ppc64': [ '0.34.5' ],
+481 silly audit   '@img/sharp-linux-riscv64': [ '0.34.5' ],
+481 silly audit   '@img/sharp-linux-s390x': [ '0.34.5' ],
+481 silly audit   '@img/sharp-linux-x64': [ '0.34.5' ],
+481 silly audit   '@img/sharp-linuxmusl-arm64': [ '0.34.5' ],
+481 silly audit   '@img/sharp-linuxmusl-x64': [ '0.34.5' ],
+481 silly audit   '@img/sharp-wasm32': [ '0.34.5' ],
+481 silly audit   '@img/sharp-win32-arm64': [ '0.34.5' ],
+481 silly audit   '@img/sharp-win32-ia32': [ '0.34.5' ],
+481 silly audit   '@img/sharp-win32-x64': [ '0.34.5' ],
+481 silly audit   'detect-libc': [ '2.1.2' ],
+481 silly audit   semver: [ '7.7.4' ],
+481 silly audit   '@emnapi/runtime': [ '1.9.1' ],
+481 silly audit   tslib: [ '2.8.1' ],
+481 silly audit   pathe: [ '2.0.3' ],
+481 silly audit   '@cloudflare/workerd-darwin-64': [ '1.20260317.1' ],
+481 silly audit   '@cloudflare/workerd-darwin-arm64': [ '1.20260317.1' ],
+481 silly audit   '@cloudflare/workerd-linux-64': [ '1.20260317.1' ],
+481 silly audit   '@cloudflare/workerd-linux-arm64': [ '1.20260317.1' ],
+481 silly audit   '@cloudflare/workerd-windows-64': [ '1.20260317.1' ],
+481 silly audit   '@poppinss/colors': [ '4.1.6' ],
+481 silly audit   '@poppinss/dumper': [ '0.6.5' ],
+481 silly audit   '@speed-highlight/core': [ '1.2.15' ],
+481 silly audit   cookie: [ '1.1.1' ],
+481 silly audit   'youch-core': [ '0.3.3' ],
+481 silly audit   kleur: [ '4.1.5' ],
+481 silly audit   '@sindresorhus/is': [ '7.2.0' ],
+481 silly audit   'supports-color': [ '10.2.2' ],
+481 silly audit   '@poppinss/exception': [ '1.2.3' ],
+481 silly audit   'error-stack-parser-es': [ '1.0.5' ]
+481 silly audit }
+482 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@cloudflare/workerd-windows-64
+483 silly reify mark deleted [
+483 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@cloudflare/workerd-windows-64'
+483 silly reify ]
+484 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@cloudflare/workerd-linux-arm64
+485 silly reify mark deleted [
+485 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@cloudflare/workerd-linux-arm64'
+485 silly reify ]
+486 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@cloudflare/workerd-linux-64
+487 silly reify mark deleted [
+487 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@cloudflare/workerd-linux-64'
+487 silly reify ]
+488 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@cloudflare/workerd-darwin-64
+489 silly reify mark deleted [
+489 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@cloudflare/workerd-darwin-64'
+489 silly reify ]
+490 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-win32-x64
+491 silly reify mark deleted [
+491 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-win32-x64'
+491 silly reify ]
+492 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-win32-ia32
+493 silly reify mark deleted [
+493 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-win32-ia32'
+493 silly reify ]
+494 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-win32-arm64
+495 silly reify mark deleted [
+495 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-win32-arm64'
+495 silly reify ]
+496 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-wasm32
+497 silly reify mark deleted [
+497 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-wasm32'
+497 silly reify ]
+498 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime
+499 silly reify mark deleted [
+499 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime'
+499 silly reify ]
+500 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/tslib
+501 silly reify mark deleted [ '/Users/shashankl/AI-News-Scraper-Email/node_modules/tslib' ]
+502 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linuxmusl-x64
+503 silly reify mark deleted [
+503 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linuxmusl-x64'
+503 silly reify ]
+504 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linuxmusl-arm64
+505 silly reify mark deleted [
+505 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linuxmusl-arm64'
+505 silly reify ]
+506 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-x64
+507 silly reify mark deleted [
+507 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-x64'
+507 silly reify ]
+508 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-s390x
+509 silly reify mark deleted [
+509 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-s390x'
+509 silly reify ]
+510 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-riscv64
+511 silly reify mark deleted [
+511 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-riscv64'
+511 silly reify ]
+512 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-ppc64
+513 silly reify mark deleted [
+513 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-ppc64'
+513 silly reify ]
+514 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-arm64
+515 silly reify mark deleted [
+515 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-arm64'
+515 silly reify ]
+516 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-arm
+517 silly reify mark deleted [
+517 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-linux-arm'
+517 silly reify ]
+518 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linuxmusl-x64
+519 silly reify mark deleted [
+519 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linuxmusl-x64'
+519 silly reify ]
+520 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linuxmusl-arm64
+521 silly reify mark deleted [
+521 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linuxmusl-arm64'
+521 silly reify ]
+522 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-x64
+523 silly reify mark deleted [
+523 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-x64'
+523 silly reify ]
+524 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-s390x
+525 silly reify mark deleted [
+525 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-s390x'
+525 silly reify ]
+526 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-riscv64
+527 silly reify mark deleted [
+527 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-riscv64'
+527 silly reify ]
+528 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-ppc64
+529 silly reify mark deleted [
+529 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-ppc64'
+529 silly reify ]
+530 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-arm64
+531 silly reify mark deleted [
+531 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-arm64'
+531 silly reify ]
+532 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-arm
+533 silly reify mark deleted [
+533 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-linux-arm'
+533 silly reify ]
+534 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-darwin-x64
+535 silly reify mark deleted [
+535 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-libvips-darwin-x64'
+535 silly reify ]
+536 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-darwin-x64
+537 silly reify mark deleted [
+537 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@img/sharp-darwin-x64'
+537 silly reify ]
+538 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/win32-x64
+539 silly reify mark deleted [
+539 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/win32-x64'
+539 silly reify ]
+540 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/win32-ia32
+541 silly reify mark deleted [
+541 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/win32-ia32'
+541 silly reify ]
+542 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/win32-arm64
+543 silly reify mark deleted [
+543 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/win32-arm64'
+543 silly reify ]
+544 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/sunos-x64
+545 silly reify mark deleted [
+545 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/sunos-x64'
+545 silly reify ]
+546 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/openharmony-arm64
+547 silly reify mark deleted [
+547 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/openharmony-arm64'
+547 silly reify ]
+548 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/openbsd-x64
+549 silly reify mark deleted [
+549 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/openbsd-x64'
+549 silly reify ]
+550 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/openbsd-arm64
+551 silly reify mark deleted [
+551 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/openbsd-arm64'
+551 silly reify ]
+552 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/netbsd-x64
+553 silly reify mark deleted [
+553 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/netbsd-x64'
+553 silly reify ]
+554 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/netbsd-arm64
+555 silly reify mark deleted [
+555 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/netbsd-arm64'
+555 silly reify ]
+556 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-x64
+557 silly reify mark deleted [
+557 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-x64'
+557 silly reify ]
+558 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-s390x
+559 silly reify mark deleted [
+559 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-s390x'
+559 silly reify ]
+560 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-riscv64
+561 silly reify mark deleted [
+561 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-riscv64'
+561 silly reify ]
+562 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-ppc64
+563 silly reify mark deleted [
+563 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-ppc64'
+563 silly reify ]
+564 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-mips64el
+565 silly reify mark deleted [
+565 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-mips64el'
+565 silly reify ]
+566 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-loong64
+567 silly reify mark deleted [
+567 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-loong64'
+567 silly reify ]
+568 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-ia32
+569 silly reify mark deleted [
+569 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-ia32'
+569 silly reify ]
+570 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-arm64
+571 silly reify mark deleted [
+571 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-arm64'
+571 silly reify ]
+572 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-arm
+573 silly reify mark deleted [
+573 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/linux-arm'
+573 silly reify ]
+574 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/freebsd-x64
+575 silly reify mark deleted [
+575 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/freebsd-x64'
+575 silly reify ]
+576 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/freebsd-arm64
+577 silly reify mark deleted [
+577 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/freebsd-arm64'
+577 silly reify ]
+578 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/darwin-x64
+579 silly reify mark deleted [
+579 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/darwin-x64'
+579 silly reify ]
+580 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/android-x64
+581 silly reify mark deleted [
+581 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/android-x64'
+581 silly reify ]
+582 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/android-arm64
+583 silly reify mark deleted [
+583 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/android-arm64'
+583 silly reify ]
+584 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/android-arm
+585 silly reify mark deleted [
+585 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/android-arm'
+585 silly reify ]
+586 verbose reify failed optional dependency /Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/aix-ppc64
+587 silly reify mark deleted [
+587 silly reify   '/Users/shashankl/AI-News-Scraper-Email/node_modules/@esbuild/aix-ppc64'
+587 silly reify ]
+588 silly tarball no local data for @emnapi/runtime@https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.9.1.tgz. Extracting by manifest.
+589 silly tarball no local data for tslib@https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz. Extracting by manifest.
+590 silly tarball no local data for supports-color@https://registry.npmjs.org/supports-color/-/supports-color-10.2.2.tgz. Extracting by manifest.
+591 silly tarball no local data for kleur@https://registry.npmjs.org/kleur/-/kleur-4.1.5.tgz. Extracting by manifest.
+592 silly tarball no local data for @img/colour@https://registry.npmjs.org/@img/colour/-/colour-1.1.0.tgz. Extracting by manifest.
+593 silly tarball no local data for @cspotcode/source-map-support@https://registry.npmjs.org/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz. Extracting by manifest.
+594 silly tarball no local data for fsevents@https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz. Extracting by manifest.
+595 silly tarball no local data for @cloudflare/workerd-darwin-arm64@https://registry.npmjs.org/@cloudflare/workerd-darwin-arm64/-/workerd-darwin-arm64-1.20260317.1.tgz. Extracting by manifest.
+596 silly tarball no local data for @sindresorhus/is@https://registry.npmjs.org/@sindresorhus/is/-/is-7.2.0.tgz. Extracting by manifest.
+597 silly tarball no local data for @img/sharp-darwin-arm64@https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.5.tgz. Extracting by manifest.
+598 silly tarball no local data for detect-libc@https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz. Extracting by manifest.
+599 silly tarball no local data for ws@https://registry.npmjs.org/ws/-/ws-8.18.0.tgz. Extracting by manifest.
+600 silly tarball no local data for @esbuild/darwin-arm64@https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.27.3.tgz. Extracting by manifest.
+601 silly tarball no local data for sharp@https://registry.npmjs.org/sharp/-/sharp-0.34.5.tgz. Extracting by manifest.
+602 silly tarball no local data for semver@https://registry.npmjs.org/semver/-/semver-7.7.4.tgz. Extracting by manifest.
+603 silly tarball no local data for esbuild@https://registry.npmjs.org/esbuild/-/esbuild-0.27.3.tgz. Extracting by manifest.
+604 silly tarball no local data for workerd@https://registry.npmjs.org/workerd/-/workerd-1.20260317.1.tgz. Extracting by manifest.
+605 silly tarball no local data for @cloudflare/workers-types@https://registry.npmjs.org/@cloudflare/workers-types/-/workers-types-4.20260317.1.tgz. Extracting by manifest.
+606 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+607 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+607 silly tar   errno: -2,
+607 silly tar   code: 'ENOENT',
+607 silly tar   syscall: 'lstat',
+607 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+607 silly tar   entry: ReadEntry {
+607 silly tar     _events: [Object: null prototype] { end: [Array] },
+607 silly tar     _eventsCount: 1,
+607 silly tar     _maxListeners: undefined,
+607 silly tar     writable: false,
+607 silly tar     readable: true,
+607 silly tar     extended: null,
+607 silly tar     globalExtended: null,
+607 silly tar     header: Header {
+607 silly tar       cksumValid: true,
+607 silly tar       needPax: false,
+607 silly tar       nullBlock: false,
+607 silly tar       block: null,
+607 silly tar       path: 'package/dist/emnapi.cjs.js',
+607 silly tar       mode: 420,
+607 silly tar       uid: null,
+607 silly tar       gid: null,
+607 silly tar       size: 41979,
+607 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+607 silly tar       cksum: 5523,
+607 silly tar       linkpath: '',
+607 silly tar       uname: '',
+607 silly tar       gname: '',
+607 silly tar       devmaj: 0,
+607 silly tar       devmin: 0,
+607 silly tar       atime: null,
+607 silly tar       ctime: null,
+607 silly tar       [Symbol(type)]: '0'
+607 silly tar     },
+607 silly tar     startBlockSize: 41984,
+607 silly tar     blockRemain: 0,
+607 silly tar     remain: 0,
+607 silly tar     type: 'File',
+607 silly tar     meta: false,
+607 silly tar     ignore: false,
+607 silly tar     path: 'dist/emnapi.cjs.js',
+607 silly tar     mode: 438,
+607 silly tar     uid: null,
+607 silly tar     gid: null,
+607 silly tar     uname: '',
+607 silly tar     gname: '',
+607 silly tar     size: 41979,
+607 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+607 silly tar     atime: null,
+607 silly tar     ctime: null,
+607 silly tar     linkpath: '',
+607 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.cjs.js',
+607 silly tar     [Symbol(shapeMode)]: false,
+607 silly tar     [Symbol(kCapture)]: false,
+607 silly tar     [Symbol(flowing)]: false,
+607 silly tar     [Symbol(paused)]: true,
+607 silly tar     [Symbol(pipes)]: [],
+607 silly tar     [Symbol(buffer)]: [
+607 silly tar       <Buffer 63 6f 6e 73 74 20 65 78 74 65 72 6e 61 6c 56 61 6c 75 65 20 3d 20 6e 65 77 20 57 65 61 6b 4d 61 70 28 29 3b 0a 66 75 6e 63 74 69 6f 6e 20 69 73 45 78 ... 13774 more bytes>,
+607 silly tar       <Buffer 7b 0a 20 20 20 20 20 20 20 20 74 68 69 73 2e 63 74 78 20 3d 20 63 74 78 3b 0a 20 20 20 20 20 20 20 20 74 68 69 73 2e 6d 6f 64 75 6c 65 41 70 69 56 65 ... 16334 more bytes>,
+607 silly tar       <Buffer 72 65 6e 63 65 57 69 74 68 44 61 74 61 28 65 6e 76 4f 62 6a 65 63 74 2c 20 76 61 6c 75 65 2c 20 69 6e 69 74 69 61 6c 52 65 66 63 6f 75 6e 74 2c 20 6f ... 11721 more bytes>
+607 silly tar     ],
+607 silly tar     [Symbol(objectMode)]: false,
+607 silly tar     [Symbol(encoding)]: null,
+607 silly tar     [Symbol(async)]: false,
+607 silly tar     [Symbol(decoder)]: null,
+607 silly tar     [Symbol(EOF)]: true,
+607 silly tar     [Symbol(emittedEnd)]: false,
+607 silly tar     [Symbol(emittingEnd)]: false,
+607 silly tar     [Symbol(closed)]: false,
+607 silly tar     [Symbol(emittedError)]: null,
+607 silly tar     [Symbol(bufferLength)]: 41979,
+607 silly tar     [Symbol(destroyed)]: false,
+607 silly tar     [Symbol(signal)]: undefined,
+607 silly tar     [Symbol(aborted)]: false
+607 silly tar   },
+607 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+607 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+607 silly tar }
+608 silly tarball no local data for @poppinss/colors@https://registry.npmjs.org/@poppinss/colors/-/colors-4.1.6.tgz. Extracting by manifest.
+609 silly tarball no local data for @poppinss/exception@https://registry.npmjs.org/@poppinss/exception/-/exception-1.2.3.tgz. Extracting by manifest.
+610 silly tarball no local data for youch-core@https://registry.npmjs.org/youch-core/-/youch-core-0.3.3.tgz. Extracting by manifest.
+611 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+612 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+612 silly tar   errno: -2,
+612 silly tar   code: 'ENOENT',
+612 silly tar   syscall: 'lstat',
+612 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+612 silly tar   entry: ReadEntry {
+612 silly tar     _events: [Object: null prototype] { end: [Array] },
+612 silly tar     _eventsCount: 1,
+612 silly tar     _maxListeners: undefined,
+612 silly tar     writable: false,
+612 silly tar     readable: true,
+612 silly tar     extended: null,
+612 silly tar     globalExtended: null,
+612 silly tar     header: Header {
+612 silly tar       cksumValid: true,
+612 silly tar       needPax: false,
+612 silly tar       nullBlock: false,
+612 silly tar       block: null,
+612 silly tar       path: 'package/dist/emnapi.cjs.min.js',
+612 silly tar       mode: 420,
+612 silly tar       uid: null,
+612 silly tar       gid: null,
+612 silly tar       size: 20849,
+612 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+612 silly tar       cksum: 5889,
+612 silly tar       linkpath: '',
+612 silly tar       uname: '',
+612 silly tar       gname: '',
+612 silly tar       devmaj: 0,
+612 silly tar       devmin: 0,
+612 silly tar       atime: null,
+612 silly tar       ctime: null,
+612 silly tar       [Symbol(type)]: '0'
+612 silly tar     },
+612 silly tar     startBlockSize: 20992,
+612 silly tar     blockRemain: 0,
+612 silly tar     remain: 0,
+612 silly tar     type: 'File',
+612 silly tar     meta: false,
+612 silly tar     ignore: false,
+612 silly tar     path: 'dist/emnapi.cjs.min.js',
+612 silly tar     mode: 438,
+612 silly tar     uid: null,
+612 silly tar     gid: null,
+612 silly tar     uname: '',
+612 silly tar     gname: '',
+612 silly tar     size: 20849,
+612 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+612 silly tar     atime: null,
+612 silly tar     ctime: null,
+612 silly tar     linkpath: '',
+612 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.cjs.min.js',
+612 silly tar     [Symbol(shapeMode)]: false,
+612 silly tar     [Symbol(kCapture)]: false,
+612 silly tar     [Symbol(flowing)]: false,
+612 silly tar     [Symbol(paused)]: true,
+612 silly tar     [Symbol(pipes)]: [],
+612 silly tar     [Symbol(buffer)]: [
+612 silly tar       <Buffer 63 6f 6e 73 74 20 65 3d 6e 65 77 20 57 65 61 6b 4d 61 70 3b 66 75 6e 63 74 69 6f 6e 20 74 28 74 29 7b 72 65 74 75 72 6e 20 65 2e 68 61 73 28 74 29 7d ... 4046 more bytes>,
+612 silly tar       <Buffer 65 6e 64 2b 2b 2c 74 7d 61 64 64 45 78 74 65 72 6e 61 6c 28 65 29 7b 72 65 74 75 72 6e 20 74 68 69 73 2e 61 64 64 28 6e 65 77 20 69 28 65 29 29 7d 64 ... 16334 more bytes>,
+612 silly tar       <Buffer 69 74 68 44 61 74 61 3d 42 2c 65 78 70 6f 72 74 73 2e 52 65 66 65 72 65 6e 63 65 57 69 74 68 46 69 6e 61 6c 69 7a 65 72 3d 54 2c 65 78 70 6f 72 74 73 ... 319 more bytes>
+612 silly tar     ],
+612 silly tar     [Symbol(objectMode)]: false,
+612 silly tar     [Symbol(encoding)]: null,
+612 silly tar     [Symbol(async)]: false,
+612 silly tar     [Symbol(decoder)]: null,
+612 silly tar     [Symbol(EOF)]: true,
+612 silly tar     [Symbol(emittedEnd)]: false,
+612 silly tar     [Symbol(emittingEnd)]: false,
+612 silly tar     [Symbol(closed)]: false,
+612 silly tar     [Symbol(emittedError)]: null,
+612 silly tar     [Symbol(bufferLength)]: 20849,
+612 silly tar     [Symbol(destroyed)]: false,
+612 silly tar     [Symbol(signal)]: undefined,
+612 silly tar     [Symbol(aborted)]: false
+612 silly tar   },
+612 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+612 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+612 silly tar }
+613 silly tarball no local data for wrangler@https://registry.npmjs.org/wrangler/-/wrangler-4.77.0.tgz. Extracting by manifest.
+614 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+615 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+615 silly tar   errno: -2,
+615 silly tar   code: 'ENOENT',
+615 silly tar   syscall: 'lstat',
+615 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+615 silly tar   entry: ReadEntry {
+615 silly tar     _events: [Object: null prototype] { end: [Array] },
+615 silly tar     _eventsCount: 1,
+615 silly tar     _maxListeners: undefined,
+615 silly tar     writable: false,
+615 silly tar     readable: true,
+615 silly tar     extended: null,
+615 silly tar     globalExtended: null,
+615 silly tar     header: Header {
+615 silly tar       cksumValid: true,
+615 silly tar       needPax: false,
+615 silly tar       nullBlock: false,
+615 silly tar       block: null,
+615 silly tar       path: 'package/dist/emnapi.esm-bundler.js',
+615 silly tar       mode: 420,
+615 silly tar       uid: null,
+615 silly tar       gid: null,
+615 silly tar       size: 51417,
+615 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+615 silly tar       cksum: 6316,
+615 silly tar       linkpath: '',
+615 silly tar       uname: '',
+615 silly tar       gname: '',
+615 silly tar       devmaj: 0,
+615 silly tar       devmin: 0,
+615 silly tar       atime: null,
+615 silly tar       ctime: null,
+615 silly tar       [Symbol(type)]: '0'
+615 silly tar     },
+615 silly tar     startBlockSize: 51712,
+615 silly tar     blockRemain: 0,
+615 silly tar     remain: 0,
+615 silly tar     type: 'File',
+615 silly tar     meta: false,
+615 silly tar     ignore: false,
+615 silly tar     path: 'dist/emnapi.esm-bundler.js',
+615 silly tar     mode: 438,
+615 silly tar     uid: null,
+615 silly tar     gid: null,
+615 silly tar     uname: '',
+615 silly tar     gname: '',
+615 silly tar     size: 51417,
+615 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+615 silly tar     atime: null,
+615 silly tar     ctime: null,
+615 silly tar     linkpath: '',
+615 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.esm-bundler.js',
+615 silly tar     [Symbol(shapeMode)]: false,
+615 silly tar     [Symbol(kCapture)]: false,
+615 silly tar     [Symbol(flowing)]: false,
+615 silly tar     [Symbol(paused)]: true,
+615 silly tar     [Symbol(pipes)]: [],
+615 silly tar     [Symbol(buffer)]: [
+615 silly tar       <Buffer 69 6d 70 6f 72 74 20 7b 20 5f 5f 65 78 74 65 6e 64 73 20 7d 20 66 72 6f 6d 20 27 74 73 6c 69 62 27 3b 0a 0a 76 61 72 20 65 78 74 65 72 6e 61 6c 56 61 ... 8188 more bytes>,
+615 silly tar       <Buffer 70 75 73 68 20 3d 20 66 75 6e 63 74 69 6f 6e 20 28 76 61 6c 75 65 29 20 7b 0a 20 20 20 20 20 20 20 20 76 61 72 20 68 3b 0a 20 20 20 20 20 20 20 20 76 ... 16334 more bytes>,
+615 silly tar       <Buffer 65 45 6e 76 2e 70 72 6f 74 6f 74 79 70 65 2e 63 61 6c 6c 62 61 63 6b 49 6e 74 6f 4d 6f 64 75 6c 65 20 3d 20 66 75 6e 63 74 69 6f 6e 20 28 65 6e 66 6f ... 16334 more bytes>,
+615 silly tar       <Buffer 76 61 72 20 76 61 6c 75 65 20 3d 20 74 68 69 73 2e 5f 76 61 6c 75 65 73 5b 69 64 5d 3b 0a 20 20 20 20 20 20 20 20 69 66 20 28 76 61 6c 75 65 29 20 7b ... 10361 more bytes>
+615 silly tar     ],
+615 silly tar     [Symbol(objectMode)]: false,
+615 silly tar     [Symbol(encoding)]: null,
+615 silly tar     [Symbol(async)]: false,
+615 silly tar     [Symbol(decoder)]: null,
+615 silly tar     [Symbol(EOF)]: true,
+615 silly tar     [Symbol(emittedEnd)]: false,
+615 silly tar     [Symbol(emittingEnd)]: false,
+615 silly tar     [Symbol(closed)]: false,
+615 silly tar     [Symbol(emittedError)]: null,
+615 silly tar     [Symbol(bufferLength)]: 51417,
+615 silly tar     [Symbol(destroyed)]: false,
+615 silly tar     [Symbol(signal)]: undefined,
+615 silly tar     [Symbol(aborted)]: false
+615 silly tar   },
+615 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+615 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+615 silly tar }
+616 silly tarball no local data for typescript@https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz. Extracting by manifest.
+617 silly tarball no local data for @img/sharp-libvips-darwin-arm64@https://registry.npmjs.org/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.2.4.tgz. Extracting by manifest.
+618 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+619 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+619 silly tar   errno: -2,
+619 silly tar   code: 'ENOENT',
+619 silly tar   syscall: 'lstat',
+619 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+619 silly tar   entry: ReadEntry {
+619 silly tar     _events: [Object: null prototype] {
+619 silly tar       end: [Function (anonymous)],
+619 silly tar       drain: [Function]
+619 silly tar     },
+619 silly tar     _eventsCount: 2,
+619 silly tar     _maxListeners: undefined,
+619 silly tar     writable: true,
+619 silly tar     readable: true,
+619 silly tar     extended: null,
+619 silly tar     globalExtended: null,
+619 silly tar     header: Header {
+619 silly tar       cksumValid: true,
+619 silly tar       needPax: false,
+619 silly tar       nullBlock: false,
+619 silly tar       block: null,
+619 silly tar       path: 'package/dist/emnapi.iife.js',
+619 silly tar       mode: 420,
+619 silly tar       uid: null,
+619 silly tar       gid: null,
+619 silly tar       size: 59835,
+619 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+619 silly tar       cksum: 5622,
+619 silly tar       linkpath: '',
+619 silly tar       uname: '',
+619 silly tar       gname: '',
+619 silly tar       devmaj: 0,
+619 silly tar       devmin: 0,
+619 silly tar       atime: null,
+619 silly tar       ctime: null,
+619 silly tar       [Symbol(type)]: '0'
+619 silly tar     },
+619 silly tar     startBlockSize: 59904,
+619 silly tar     blockRemain: 4596,
+619 silly tar     remain: 4527,
+619 silly tar     type: 'File',
+619 silly tar     meta: false,
+619 silly tar     ignore: false,
+619 silly tar     path: 'dist/emnapi.iife.js',
+619 silly tar     mode: 438,
+619 silly tar     uid: null,
+619 silly tar     gid: null,
+619 silly tar     uname: '',
+619 silly tar     gname: '',
+619 silly tar     size: 59835,
+619 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+619 silly tar     atime: null,
+619 silly tar     ctime: null,
+619 silly tar     linkpath: '',
+619 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.iife.js',
+619 silly tar     [Symbol(shapeMode)]: false,
+619 silly tar     [Symbol(kCapture)]: false,
+619 silly tar     [Symbol(flowing)]: false,
+619 silly tar     [Symbol(paused)]: true,
+619 silly tar     [Symbol(pipes)]: [],
+619 silly tar     [Symbol(buffer)]: [
+619 silly tar       <Buffer 76 61 72 20 65 6d 6e 61 70 69 20 3d 20 28 66 75 6e 63 74 69 6f 6e 20 28 65 78 70 6f 72 74 73 29 20 7b 0a 0a 20 20 20 20 2f 2a 2a 2a 2a 2a 2a 2a 2a 2a ... 5116 more bytes>,
+619 silly tar       <Buffer 73 79 6d 29 3b 0a 20 20 20 20 20 20 20 20 20 20 20 20 6e 65 77 20 57 65 61 6b 4d 61 70 28 29 2e 73 65 74 28 73 79 6d 2c 20 75 6e 64 65 66 69 6e 65 64 ... 16334 more bytes>,
+619 silly tar       <Buffer 20 20 20 20 20 20 20 74 68 69 73 2e 74 72 79 43 61 74 63 68 20 3d 20 6e 65 77 20 54 72 79 43 61 74 63 68 28 29 3b 0a 20 20 20 20 20 20 20 20 20 20 20 ... 16334 more bytes>,
+619 silly tar       <Buffer 6e 73 74 61 6e 63 65 6f 66 20 53 74 72 6f 6e 67 52 65 66 29 20 7b 0a 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 74 68 69 73 2e 5f 72 65 66 2e 64 ... 16334 more bytes>,
+619 silly tar       <Buffer 2c 20 69 6e 69 74 69 61 6c 52 65 66 63 6f 75 6e 74 2c 20 6f 77 6e 65 72 73 68 69 70 2c 20 66 69 6e 61 6c 69 7a 65 5f 63 61 6c 6c 62 61 63 6b 2c 20 66 ... 940 more bytes>
+619 silly tar     ],
+619 silly tar     [Symbol(objectMode)]: false,
+619 silly tar     [Symbol(encoding)]: null,
+619 silly tar     [Symbol(async)]: false,
+619 silly tar     [Symbol(decoder)]: null,
+619 silly tar     [Symbol(EOF)]: false,
+619 silly tar     [Symbol(emittedEnd)]: false,
+619 silly tar     [Symbol(emittingEnd)]: false,
+619 silly tar     [Symbol(closed)]: false,
+619 silly tar     [Symbol(emittedError)]: null,
+619 silly tar     [Symbol(bufferLength)]: 55308,
+619 silly tar     [Symbol(destroyed)]: false,
+619 silly tar     [Symbol(signal)]: undefined,
+619 silly tar     [Symbol(aborted)]: false
+619 silly tar   },
+619 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+619 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+619 silly tar }
+620 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+621 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+621 silly tar   errno: -2,
+621 silly tar   code: 'ENOENT',
+621 silly tar   syscall: 'lstat',
+621 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+621 silly tar   entry: ReadEntry {
+621 silly tar     _events: [Object: null prototype] { end: [Function (anonymous)] },
+621 silly tar     _eventsCount: 1,
+621 silly tar     _maxListeners: undefined,
+621 silly tar     writable: false,
+621 silly tar     readable: true,
+621 silly tar     extended: null,
+621 silly tar     globalExtended: null,
+621 silly tar     header: Header {
+621 silly tar       cksumValid: true,
+621 silly tar       needPax: false,
+621 silly tar       nullBlock: false,
+621 silly tar       block: null,
+621 silly tar       path: 'package/dist/emnapi.js',
+621 silly tar       mode: 420,
+621 silly tar       uid: null,
+621 silly tar       gid: null,
+621 silly tar       size: 60111,
+621 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+621 silly tar       cksum: 5159,
+621 silly tar       linkpath: '',
+621 silly tar       uname: '',
+621 silly tar       gname: '',
+621 silly tar       devmaj: 0,
+621 silly tar       devmin: 0,
+621 silly tar       atime: null,
+621 silly tar       ctime: null,
+621 silly tar       [Symbol(type)]: '0'
+621 silly tar     },
+621 silly tar     startBlockSize: 60416,
+621 silly tar     blockRemain: 0,
+621 silly tar     remain: 0,
+621 silly tar     type: 'File',
+621 silly tar     meta: false,
+621 silly tar     ignore: false,
+621 silly tar     path: 'dist/emnapi.js',
+621 silly tar     mode: 438,
+621 silly tar     uid: null,
+621 silly tar     gid: null,
+621 silly tar     uname: '',
+621 silly tar     gname: '',
+621 silly tar     size: 60111,
+621 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+621 silly tar     atime: null,
+621 silly tar     ctime: null,
+621 silly tar     linkpath: '',
+621 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.js',
+621 silly tar     [Symbol(shapeMode)]: false,
+621 silly tar     [Symbol(kCapture)]: false,
+621 silly tar     [Symbol(flowing)]: false,
+621 silly tar     [Symbol(paused)]: true,
+621 silly tar     [Symbol(pipes)]: [],
+621 silly tar     [Symbol(buffer)]: [
+621 silly tar       <Buffer 28 66 75 6e 63 74 69 6f 6e 20 28 67 6c 6f 62 61 6c 2c 20 66 61 63 74 6f 72 79 29 20 7b 0a 20 20 20 20 74 79 70 65 6f 66 20 65 78 70 6f 72 74 73 20 3d ... 11226 more bytes>,
+621 silly tar       <Buffer 45 2c 0a 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 48 61 6e 64 6c 65 53 74 6f 72 65 2e 54 52 55 45 2c 0a 20 20 20 20 20 20 20 20 20 20 20 20 20 ... 16334 more bytes>,
+621 silly tar       <Buffer 69 6e 64 69 6e 67 28 76 61 6c 75 65 29 3b 0a 20 20 20 20 20 20 20 20 7d 3b 0a 20 20 20 20 20 20 20 20 45 6e 76 2e 70 72 6f 74 6f 74 79 70 65 2e 73 65 ... 16334 more bytes>,
+621 silly tar       <Buffer 20 7d 28 52 65 66 65 72 65 6e 63 65 29 29 3b 0a 20 20 20 20 76 61 72 20 52 65 66 65 72 65 6e 63 65 57 69 74 68 46 69 6e 61 6c 69 7a 65 72 20 3d 20 2f ... 16017 more bytes>
+621 silly tar     ],
+621 silly tar     [Symbol(objectMode)]: false,
+621 silly tar     [Symbol(encoding)]: null,
+621 silly tar     [Symbol(async)]: false,
+621 silly tar     [Symbol(decoder)]: null,
+621 silly tar     [Symbol(EOF)]: true,
+621 silly tar     [Symbol(emittedEnd)]: false,
+621 silly tar     [Symbol(emittingEnd)]: false,
+621 silly tar     [Symbol(closed)]: false,
+621 silly tar     [Symbol(emittedError)]: null,
+621 silly tar     [Symbol(bufferLength)]: 60111,
+621 silly tar     [Symbol(destroyed)]: false,
+621 silly tar     [Symbol(signal)]: undefined,
+621 silly tar     [Symbol(aborted)]: false
+621 silly tar   },
+621 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+621 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+621 silly tar }
+622 silly tarball no local data for @poppinss/dumper@https://registry.npmjs.org/@poppinss/dumper/-/dumper-0.6.5.tgz. Extracting by manifest.
+623 silly tarball no local data for youch@https://registry.npmjs.org/youch/-/youch-4.1.0-beta.10.tgz. Extracting by manifest.
+624 silly tarball no local data for undici@https://registry.npmjs.org/undici/-/undici-7.24.4.tgz. Extracting by manifest.
+625 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+626 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+626 silly tar   errno: -2,
+626 silly tar   code: 'ENOENT',
+626 silly tar   syscall: 'lstat',
+626 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+626 silly tar   entry: ReadEntry {
+626 silly tar     _events: [Object: null prototype] {
+626 silly tar       end: [Function (anonymous)],
+626 silly tar       drain: [Function]
+626 silly tar     },
+626 silly tar     _eventsCount: 2,
+626 silly tar     _maxListeners: undefined,
+626 silly tar     writable: true,
+626 silly tar     readable: true,
+626 silly tar     extended: null,
+626 silly tar     globalExtended: null,
+626 silly tar     header: Header {
+626 silly tar       cksumValid: true,
+626 silly tar       needPax: false,
+626 silly tar       nullBlock: false,
+626 silly tar       block: null,
+626 silly tar       path: 'package/dist/emnapi.min.js',
+626 silly tar       mode: 420,
+626 silly tar       uid: null,
+626 silly tar       gid: null,
+626 silly tar       size: 25461,
+626 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+626 silly tar       cksum: 5529,
+626 silly tar       linkpath: '',
+626 silly tar       uname: '',
+626 silly tar       gname: '',
+626 silly tar       devmaj: 0,
+626 silly tar       devmin: 0,
+626 silly tar       atime: null,
+626 silly tar       ctime: null,
+626 silly tar       [Symbol(type)]: '0'
+626 silly tar     },
+626 silly tar     startBlockSize: 25600,
+626 silly tar     blockRemain: 3020,
+626 silly tar     remain: 2881,
+626 silly tar     type: 'File',
+626 silly tar     meta: false,
+626 silly tar     ignore: false,
+626 silly tar     path: 'dist/emnapi.min.js',
+626 silly tar     mode: 438,
+626 silly tar     uid: null,
+626 silly tar     gid: null,
+626 silly tar     uname: '',
+626 silly tar     gname: '',
+626 silly tar     size: 25461,
+626 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+626 silly tar     atime: null,
+626 silly tar     ctime: null,
+626 silly tar     linkpath: '',
+626 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.min.js',
+626 silly tar     [Symbol(shapeMode)]: false,
+626 silly tar     [Symbol(kCapture)]: false,
+626 silly tar     [Symbol(flowing)]: false,
+626 silly tar     [Symbol(paused)]: true,
+626 silly tar     [Symbol(pipes)]: [],
+626 silly tar     [Symbol(buffer)]: [
+626 silly tar       <Buffer 21 66 75 6e 63 74 69 6f 6e 28 74 2c 65 29 7b 22 6f 62 6a 65 63 74 22 3d 3d 74 79 70 65 6f 66 20 65 78 70 6f 72 74 73 26 26 22 75 6e 64 65 66 69 6e 65 ... 15834 more bytes>,
+626 silly tar       <Buffer 6f 74 6f 74 79 70 65 2e 63 6c 65 61 72 57 65 61 6b 3d 66 75 6e 63 74 69 6f 6e 28 29 7b 69 66 28 6c 26 26 76 6f 69 64 20 30 21 3d 3d 74 68 69 73 2e 5f ... 6646 more bytes>
+626 silly tar     ],
+626 silly tar     [Symbol(objectMode)]: false,
+626 silly tar     [Symbol(encoding)]: null,
+626 silly tar     [Symbol(async)]: false,
+626 silly tar     [Symbol(decoder)]: null,
+626 silly tar     [Symbol(EOF)]: false,
+626 silly tar     [Symbol(emittedEnd)]: false,
+626 silly tar     [Symbol(emittingEnd)]: false,
+626 silly tar     [Symbol(closed)]: false,
+626 silly tar     [Symbol(emittedError)]: null,
+626 silly tar     [Symbol(bufferLength)]: 22580,
+626 silly tar     [Symbol(destroyed)]: false,
+626 silly tar     [Symbol(signal)]: undefined,
+626 silly tar     [Symbol(aborted)]: false
+626 silly tar   },
+626 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+626 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+626 silly tar }
+627 http fetch GET 200 https://registry.npmjs.org/supports-color/-/supports-color-10.2.2.tgz 115ms (cache miss)
+628 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+629 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+629 silly tar   errno: -2,
+629 silly tar   code: 'ENOENT',
+629 silly tar   syscall: 'lstat',
+629 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+629 silly tar   entry: ReadEntry {
+629 silly tar     _events: [Object: null prototype] { end: [Function (anonymous)] },
+629 silly tar     _eventsCount: 1,
+629 silly tar     _maxListeners: undefined,
+629 silly tar     writable: false,
+629 silly tar     readable: true,
+629 silly tar     extended: null,
+629 silly tar     globalExtended: null,
+629 silly tar     header: Header {
+629 silly tar       cksumValid: true,
+629 silly tar       needPax: false,
+629 silly tar       nullBlock: false,
+629 silly tar       block: null,
+629 silly tar       path: 'package/dist/emnapi.min.mjs',
+629 silly tar       mode: 420,
+629 silly tar       uid: null,
+629 silly tar       gid: null,
+629 silly tar       size: 20642,
+629 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+629 silly tar       cksum: 5628,
+629 silly tar       linkpath: '',
+629 silly tar       uname: '',
+629 silly tar       gname: '',
+629 silly tar       devmaj: 0,
+629 silly tar       devmin: 0,
+629 silly tar       atime: null,
+629 silly tar       ctime: null,
+629 silly tar       [Symbol(type)]: '0'
+629 silly tar     },
+629 silly tar     startBlockSize: 20992,
+629 silly tar     blockRemain: 0,
+629 silly tar     remain: 0,
+629 silly tar     type: 'File',
+629 silly tar     meta: false,
+629 silly tar     ignore: false,
+629 silly tar     path: 'dist/emnapi.min.mjs',
+629 silly tar     mode: 438,
+629 silly tar     uid: null,
+629 silly tar     gid: null,
+629 silly tar     uname: '',
+629 silly tar     gname: '',
+629 silly tar     size: 20642,
+629 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+629 silly tar     atime: null,
+629 silly tar     ctime: null,
+629 silly tar     linkpath: '',
+629 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.min.mjs',
+629 silly tar     [Symbol(shapeMode)]: false,
+629 silly tar     [Symbol(kCapture)]: false,
+629 silly tar     [Symbol(flowing)]: false,
+629 silly tar     [Symbol(paused)]: true,
+629 silly tar     [Symbol(pipes)]: [],
+629 silly tar     [Symbol(buffer)]: [
+629 silly tar       <Buffer 63 6f 6e 73 74 20 65 3d 6e 65 77 20 57 65 61 6b 4d 61 70 3b 66 75 6e 63 74 69 6f 6e 20 74 28 74 29 7b 72 65 74 75 72 6e 20 65 2e 68 61 73 28 74 29 7d ... 8706 more bytes>,
+629 silly tar       <Buffer 2e 66 69 6e 61 6c 69 7a 69 6e 67 5f 72 65 66 6c 69 73 74 29 2c 46 2e 66 69 6e 61 6c 69 7a 65 41 6c 6c 28 74 68 69 73 2e 72 65 66 6c 69 73 74 29 2c 74 ... 11836 more bytes>
+629 silly tar     ],
+629 silly tar     [Symbol(objectMode)]: false,
+629 silly tar     [Symbol(encoding)]: null,
+629 silly tar     [Symbol(async)]: false,
+629 silly tar     [Symbol(decoder)]: null,
+629 silly tar     [Symbol(EOF)]: true,
+629 silly tar     [Symbol(emittedEnd)]: false,
+629 silly tar     [Symbol(emittingEnd)]: false,
+629 silly tar     [Symbol(closed)]: false,
+629 silly tar     [Symbol(emittedError)]: null,
+629 silly tar     [Symbol(bufferLength)]: 20642,
+629 silly tar     [Symbol(destroyed)]: false,
+629 silly tar     [Symbol(signal)]: undefined,
+629 silly tar     [Symbol(aborted)]: false
+629 silly tar   },
+629 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+629 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+629 silly tar }
+630 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+631 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+631 silly tar   errno: -2,
+631 silly tar   code: 'ENOENT',
+631 silly tar   syscall: 'lstat',
+631 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+631 silly tar   entry: ReadEntry {
+631 silly tar     _events: [Object: null prototype] {
+631 silly tar       end: [Function (anonymous)],
+631 silly tar       drain: [Function]
+631 silly tar     },
+631 silly tar     _eventsCount: 2,
+631 silly tar     _maxListeners: undefined,
+631 silly tar     writable: true,
+631 silly tar     readable: true,
+631 silly tar     extended: null,
+631 silly tar     globalExtended: null,
+631 silly tar     header: Header {
+631 silly tar       cksumValid: true,
+631 silly tar       needPax: false,
+631 silly tar       nullBlock: false,
+631 silly tar       block: null,
+631 silly tar       path: 'package/dist/emnapi.mjs',
+631 silly tar       mode: 420,
+631 silly tar       uid: null,
+631 silly tar       gid: null,
+631 silly tar       size: 41181,
+631 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+631 silly tar       cksum: 5259,
+631 silly tar       linkpath: '',
+631 silly tar       uname: '',
+631 silly tar       gname: '',
+631 silly tar       devmaj: 0,
+631 silly tar       devmin: 0,
+631 silly tar       atime: null,
+631 silly tar       ctime: null,
+631 silly tar       [Symbol(type)]: '0'
+631 silly tar     },
+631 silly tar     startBlockSize: 41472,
+631 silly tar     blockRemain: 16720,
+631 silly tar     remain: 16429,
+631 silly tar     type: 'File',
+631 silly tar     meta: false,
+631 silly tar     ignore: false,
+631 silly tar     path: 'dist/emnapi.mjs',
+631 silly tar     mode: 438,
+631 silly tar     uid: null,
+631 silly tar     gid: null,
+631 silly tar     uname: '',
+631 silly tar     gname: '',
+631 silly tar     size: 41181,
+631 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+631 silly tar     atime: null,
+631 silly tar     ctime: null,
+631 silly tar     linkpath: '',
+631 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.mjs',
+631 silly tar     [Symbol(shapeMode)]: false,
+631 silly tar     [Symbol(kCapture)]: false,
+631 silly tar     [Symbol(flowing)]: false,
+631 silly tar     [Symbol(paused)]: true,
+631 silly tar     [Symbol(pipes)]: [],
+631 silly tar     [Symbol(buffer)]: [
+631 silly tar       <Buffer 63 6f 6e 73 74 20 65 78 74 65 72 6e 61 6c 56 61 6c 75 65 20 3d 20 6e 65 77 20 57 65 61 6b 4d 61 70 28 29 3b 0a 66 75 6e 63 74 69 6f 6e 20 69 73 45 78 ... 3586 more bytes>,
+631 silly tar       <Buffer 6e 65 77 20 54 79 70 65 45 72 72 6f 72 28 27 54 68 65 20 22 63 61 6c 6c 62 61 63 6b 22 20 61 72 67 75 6d 65 6e 74 20 6d 75 73 74 20 62 65 20 6f 66 20 ... 16334 more bytes>,
+631 silly tar       <Buffer 4f 62 6a 65 63 74 2c 20 65 72 72 29 20 3d 3e 20 7b 0a 20 20 20 20 20 20 20 20 20 20 20 20 69 66 20 28 65 6e 76 4f 62 6a 65 63 74 2e 74 65 72 6d 69 6e ... 4682 more bytes>
+631 silly tar     ],
+631 silly tar     [Symbol(objectMode)]: false,
+631 silly tar     [Symbol(encoding)]: null,
+631 silly tar     [Symbol(async)]: false,
+631 silly tar     [Symbol(decoder)]: null,
+631 silly tar     [Symbol(EOF)]: false,
+631 silly tar     [Symbol(emittedEnd)]: false,
+631 silly tar     [Symbol(emittingEnd)]: false,
+631 silly tar     [Symbol(closed)]: false,
+631 silly tar     [Symbol(emittedError)]: null,
+631 silly tar     [Symbol(bufferLength)]: 24752,
+631 silly tar     [Symbol(destroyed)]: false,
+631 silly tar     [Symbol(signal)]: undefined,
+631 silly tar     [Symbol(aborted)]: false
+631 silly tar   },
+631 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+631 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+631 silly tar }
+632 http fetch GET 200 https://registry.npmjs.org/kleur/-/kleur-4.1.5.tgz 123ms (cache miss)
+633 http fetch GET 200 https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz 117ms (cache miss)
+634 http fetch GET 200 https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz 148ms (cache miss)
+635 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+636 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+636 silly tar   errno: -2,
+636 silly tar   code: 'ENOENT',
+636 silly tar   syscall: 'lstat',
+636 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+636 silly tar   entry: ReadEntry {
+636 silly tar     _events: [Object: null prototype] { end: [Function (anonymous)] },
+636 silly tar     _eventsCount: 1,
+636 silly tar     _maxListeners: undefined,
+636 silly tar     writable: false,
+636 silly tar     readable: true,
+636 silly tar     extended: null,
+636 silly tar     globalExtended: null,
+636 silly tar     header: Header {
+636 silly tar       cksumValid: true,
+636 silly tar       needPax: false,
+636 silly tar       nullBlock: false,
+636 silly tar       block: null,
+636 silly tar       path: 'package/dist/emnapi.d.mts',
+636 silly tar       mode: 420,
+636 silly tar       uid: null,
+636 silly tar       gid: null,
+636 silly tar       size: 21437,
+636 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+636 silly tar       cksum: 5425,
+636 silly tar       linkpath: '',
+636 silly tar       uname: '',
+636 silly tar       gname: '',
+636 silly tar       devmaj: 0,
+636 silly tar       devmin: 0,
+636 silly tar       atime: null,
+636 silly tar       ctime: null,
+636 silly tar       [Symbol(type)]: '0'
+636 silly tar     },
+636 silly tar     startBlockSize: 21504,
+636 silly tar     blockRemain: 0,
+636 silly tar     remain: 0,
+636 silly tar     type: 'File',
+636 silly tar     meta: false,
+636 silly tar     ignore: false,
+636 silly tar     path: 'dist/emnapi.d.mts',
+636 silly tar     mode: 438,
+636 silly tar     uid: null,
+636 silly tar     gid: null,
+636 silly tar     uname: '',
+636 silly tar     gname: '',
+636 silly tar     size: 21437,
+636 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+636 silly tar     atime: null,
+636 silly tar     ctime: null,
+636 silly tar     linkpath: '',
+636 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.d.mts',
+636 silly tar     [Symbol(shapeMode)]: false,
+636 silly tar     [Symbol(kCapture)]: false,
+636 silly tar     [Symbol(flowing)]: false,
+636 silly tar     [Symbol(paused)]: true,
+636 silly tar     [Symbol(pipes)]: [],
+636 silly tar     [Symbol(buffer)]: [
+636 silly tar       <Buffer 65 78 70 6f 72 74 20 64 65 63 6c 61 72 65 20 74 79 70 65 20 50 74 72 20 3d 20 6e 75 6d 62 65 72 20 7c 20 62 69 67 69 6e 74 0a 0a 65 78 70 6f 72 74 20 ... 15486 more bytes>,
+636 silly tar       <Buffer 61 3a 20 6e 75 6d 62 65 72 2c 20 62 3a 20 6e 75 6d 62 65 72 29 3a 20 76 6f 69 64 3b 0d 0a 20 20 20 20 64 69 73 70 6f 73 65 28 29 3a 20 76 6f 69 64 3b ... 5851 more bytes>
+636 silly tar     ],
+636 silly tar     [Symbol(objectMode)]: false,
+636 silly tar     [Symbol(encoding)]: null,
+636 silly tar     [Symbol(async)]: false,
+636 silly tar     [Symbol(decoder)]: null,
+636 silly tar     [Symbol(EOF)]: true,
+636 silly tar     [Symbol(emittedEnd)]: false,
+636 silly tar     [Symbol(emittingEnd)]: false,
+636 silly tar     [Symbol(closed)]: false,
+636 silly tar     [Symbol(emittedError)]: null,
+636 silly tar     [Symbol(bufferLength)]: 21437,
+636 silly tar     [Symbol(destroyed)]: false,
+636 silly tar     [Symbol(signal)]: undefined,
+636 silly tar     [Symbol(aborted)]: false
+636 silly tar   },
+636 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+636 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+636 silly tar }
+637 http fetch GET 200 https://registry.npmjs.org/@img/colour/-/colour-1.1.0.tgz 128ms (cache miss)
+638 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+639 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+639 silly tar   errno: -2,
+639 silly tar   code: 'ENOENT',
+639 silly tar   syscall: 'lstat',
+639 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+639 silly tar   entry: ReadEntry {
+639 silly tar     _events: [Object: null prototype] { end: [Function (anonymous)] },
+639 silly tar     _eventsCount: 1,
+639 silly tar     _maxListeners: undefined,
+639 silly tar     writable: false,
+639 silly tar     readable: true,
+639 silly tar     extended: null,
+639 silly tar     globalExtended: null,
+639 silly tar     header: Header {
+639 silly tar       cksumValid: true,
+639 silly tar       needPax: false,
+639 silly tar       nullBlock: false,
+639 silly tar       block: null,
+639 silly tar       path: 'package/dist/emnapi.min.d.mts',
+639 silly tar       mode: 420,
+639 silly tar       uid: null,
+639 silly tar       gid: null,
+639 silly tar       size: 21437,
+639 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+639 silly tar       cksum: 5795,
+639 silly tar       linkpath: '',
+639 silly tar       uname: '',
+639 silly tar       gname: '',
+639 silly tar       devmaj: 0,
+639 silly tar       devmin: 0,
+639 silly tar       atime: null,
+639 silly tar       ctime: null,
+639 silly tar       [Symbol(type)]: '0'
+639 silly tar     },
+639 silly tar     startBlockSize: 21504,
+639 silly tar     blockRemain: 0,
+639 silly tar     remain: 0,
+639 silly tar     type: 'File',
+639 silly tar     meta: false,
+639 silly tar     ignore: false,
+639 silly tar     path: 'dist/emnapi.min.d.mts',
+639 silly tar     mode: 438,
+639 silly tar     uid: null,
+639 silly tar     gid: null,
+639 silly tar     uname: '',
+639 silly tar     gname: '',
+639 silly tar     size: 21437,
+639 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+639 silly tar     atime: null,
+639 silly tar     ctime: null,
+639 silly tar     linkpath: '',
+639 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.min.d.mts',
+639 silly tar     [Symbol(shapeMode)]: false,
+639 silly tar     [Symbol(kCapture)]: false,
+639 silly tar     [Symbol(flowing)]: false,
+639 silly tar     [Symbol(paused)]: true,
+639 silly tar     [Symbol(pipes)]: [],
+639 silly tar     [Symbol(buffer)]: [
+639 silly tar       <Buffer 65 78 70 6f 72 74 20 64 65 63 6c 61 72 65 20 74 79 70 65 20 50 74 72 20 3d 20 6e 75 6d 62 65 72 20 7c 20 62 69 67 69 6e 74 0a 0a 65 78 70 6f 72 74 20 ... 9854 more bytes>,
+639 silly tar       <Buffer 62 6a 65 63 74 3a 20 45 6e 76 2c 20 66 6e 3a 20 43 6c 65 61 6e 75 70 48 6f 6f 6b 43 61 6c 6c 62 61 63 6b 46 75 6e 63 74 69 6f 6e 2c 20 61 72 67 3a 20 ... 11483 more bytes>
+639 silly tar     ],
+639 silly tar     [Symbol(objectMode)]: false,
+639 silly tar     [Symbol(encoding)]: null,
+639 silly tar     [Symbol(async)]: false,
+639 silly tar     [Symbol(decoder)]: null,
+639 silly tar     [Symbol(EOF)]: true,
+639 silly tar     [Symbol(emittedEnd)]: false,
+639 silly tar     [Symbol(emittingEnd)]: false,
+639 silly tar     [Symbol(closed)]: false,
+639 silly tar     [Symbol(emittedError)]: null,
+639 silly tar     [Symbol(bufferLength)]: 21437,
+639 silly tar     [Symbol(destroyed)]: false,
+639 silly tar     [Symbol(signal)]: undefined,
+639 silly tar     [Symbol(aborted)]: false
+639 silly tar   },
+639 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+639 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+639 silly tar }
+640 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+641 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+641 silly tar   errno: -2,
+641 silly tar   code: 'ENOENT',
+641 silly tar   syscall: 'lstat',
+641 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+641 silly tar   entry: ReadEntry {
+641 silly tar     _events: [Object: null prototype] { end: [Function (anonymous)] },
+641 silly tar     _eventsCount: 1,
+641 silly tar     _maxListeners: undefined,
+641 silly tar     writable: false,
+641 silly tar     readable: true,
+641 silly tar     extended: null,
+641 silly tar     globalExtended: null,
+641 silly tar     header: Header {
+641 silly tar       cksumValid: true,
+641 silly tar       needPax: false,
+641 silly tar       nullBlock: false,
+641 silly tar       block: null,
+641 silly tar       path: 'package/dist/emnapi.cjs.min.d.ts',
+641 silly tar       mode: 420,
+641 silly tar       uid: null,
+641 silly tar       gid: null,
+641 silly tar       size: 21437,
+641 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+641 silly tar       cksum: 6052,
+641 silly tar       linkpath: '',
+641 silly tar       uname: '',
+641 silly tar       gname: '',
+641 silly tar       devmaj: 0,
+641 silly tar       devmin: 0,
+641 silly tar       atime: null,
+641 silly tar       ctime: null,
+641 silly tar       [Symbol(type)]: '0'
+641 silly tar     },
+641 silly tar     startBlockSize: 21504,
+641 silly tar     blockRemain: 0,
+641 silly tar     remain: 0,
+641 silly tar     type: 'File',
+641 silly tar     meta: false,
+641 silly tar     ignore: false,
+641 silly tar     path: 'dist/emnapi.cjs.min.d.ts',
+641 silly tar     mode: 438,
+641 silly tar     uid: null,
+641 silly tar     gid: null,
+641 silly tar     uname: '',
+641 silly tar     gname: '',
+641 silly tar     size: 21437,
+641 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+641 silly tar     atime: null,
+641 silly tar     ctime: null,
+641 silly tar     linkpath: '',
+641 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.cjs.min.d.ts',
+641 silly tar     [Symbol(shapeMode)]: false,
+641 silly tar     [Symbol(kCapture)]: false,
+641 silly tar     [Symbol(flowing)]: false,
+641 silly tar     [Symbol(paused)]: true,
+641 silly tar     [Symbol(pipes)]: [],
+641 silly tar     [Symbol(buffer)]: [
+641 silly tar       <Buffer 65 78 70 6f 72 74 20 64 65 63 6c 61 72 65 20 74 79 70 65 20 50 74 72 20 3d 20 6e 75 6d 62 65 72 20 7c 20 62 69 67 69 6e 74 0a 0a 65 78 70 6f 72 74 20 ... 4222 more bytes>,
+641 silly tar       <Buffer 0a 20 20 6e 61 70 69 5f 65 73 63 61 70 65 5f 63 61 6c 6c 65 64 5f 74 77 69 63 65 2c 0a 20 20 6e 61 70 69 5f 68 61 6e 64 6c 65 5f 73 63 6f 70 65 5f 6d ... 16334 more bytes>,
+641 silly tar       <Buffer 69 7a 65 3b 0d 0a 20 20 20 20 63 6f 6e 73 74 72 75 63 74 6f 72 28 29 3b 0d 0a 20 20 20 20 61 64 64 28 76 61 6c 75 65 3a 20 56 29 3a 20 76 6f 69 64 3b ... 731 more bytes>
+641 silly tar     ],
+641 silly tar     [Symbol(objectMode)]: false,
+641 silly tar     [Symbol(encoding)]: null,
+641 silly tar     [Symbol(async)]: false,
+641 silly tar     [Symbol(decoder)]: null,
+641 silly tar     [Symbol(EOF)]: true,
+641 silly tar     [Symbol(emittedEnd)]: false,
+641 silly tar     [Symbol(emittingEnd)]: false,
+641 silly tar     [Symbol(closed)]: false,
+641 silly tar     [Symbol(emittedError)]: null,
+641 silly tar     [Symbol(bufferLength)]: 21437,
+641 silly tar     [Symbol(destroyed)]: false,
+641 silly tar     [Symbol(signal)]: undefined,
+641 silly tar     [Symbol(aborted)]: false
+641 silly tar   },
+641 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+641 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+641 silly tar }
+642 http fetch GET 200 https://registry.npmjs.org/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz 131ms (cache miss)
+643 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+644 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+644 silly tar   errno: -2,
+644 silly tar   code: 'ENOENT',
+644 silly tar   syscall: 'lstat',
+644 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+644 silly tar   entry: ReadEntry {
+644 silly tar     _events: [Object: null prototype] { end: [Function (anonymous)] },
+644 silly tar     _eventsCount: 1,
+644 silly tar     _maxListeners: undefined,
+644 silly tar     writable: false,
+644 silly tar     readable: true,
+644 silly tar     extended: null,
+644 silly tar     globalExtended: null,
+644 silly tar     header: Header {
+644 silly tar       cksumValid: true,
+644 silly tar       needPax: false,
+644 silly tar       nullBlock: false,
+644 silly tar       block: null,
+644 silly tar       path: 'package/dist/emnapi.d.ts',
+644 silly tar       mode: 420,
+644 silly tar       uid: null,
+644 silly tar       gid: null,
+644 silly tar       size: 21466,
+644 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+644 silly tar       cksum: 5310,
+644 silly tar       linkpath: '',
+644 silly tar       uname: '',
+644 silly tar       gname: '',
+644 silly tar       devmaj: 0,
+644 silly tar       devmin: 0,
+644 silly tar       atime: null,
+644 silly tar       ctime: null,
+644 silly tar       [Symbol(type)]: '0'
+644 silly tar     },
+644 silly tar     startBlockSize: 21504,
+644 silly tar     blockRemain: 0,
+644 silly tar     remain: 0,
+644 silly tar     type: 'File',
+644 silly tar     meta: false,
+644 silly tar     ignore: false,
+644 silly tar     path: 'dist/emnapi.d.ts',
+644 silly tar     mode: 438,
+644 silly tar     uid: null,
+644 silly tar     gid: null,
+644 silly tar     uname: '',
+644 silly tar     gname: '',
+644 silly tar     size: 21466,
+644 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+644 silly tar     atime: null,
+644 silly tar     ctime: null,
+644 silly tar     linkpath: '',
+644 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.d.ts',
+644 silly tar     [Symbol(shapeMode)]: false,
+644 silly tar     [Symbol(kCapture)]: false,
+644 silly tar     [Symbol(flowing)]: false,
+644 silly tar     [Symbol(paused)]: true,
+644 silly tar     [Symbol(pipes)]: [],
+644 silly tar     [Symbol(buffer)]: [
+644 silly tar       <Buffer 65 78 70 6f 72 74 20 64 65 63 6c 61 72 65 20 74 79 70 65 20 50 74 72 20 3d 20 6e 75 6d 62 65 72 20 7c 20 62 69 67 69 6e 74 0a 0a 65 78 70 6f 72 74 20 ... 14974 more bytes>,
+644 silly tar       <Buffer 48 61 6e 64 6c 65 3c 61 6e 79 3e 20 7c 20 6e 75 6c 6c 3b 0d 0a 20 20 20 20 65 73 63 61 70 65 43 61 6c 6c 65 64 28 29 3a 20 62 6f 6f 6c 65 61 6e 3b 0d ... 6392 more bytes>
+644 silly tar     ],
+644 silly tar     [Symbol(objectMode)]: false,
+644 silly tar     [Symbol(encoding)]: null,
+644 silly tar     [Symbol(async)]: false,
+644 silly tar     [Symbol(decoder)]: null,
+644 silly tar     [Symbol(EOF)]: true,
+644 silly tar     [Symbol(emittedEnd)]: false,
+644 silly tar     [Symbol(emittingEnd)]: false,
+644 silly tar     [Symbol(closed)]: false,
+644 silly tar     [Symbol(emittedError)]: null,
+644 silly tar     [Symbol(bufferLength)]: 21466,
+644 silly tar     [Symbol(destroyed)]: false,
+644 silly tar     [Symbol(signal)]: undefined,
+644 silly tar     [Symbol(aborted)]: false
+644 silly tar   },
+644 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+644 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+644 silly tar }
+645 warn tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'
+646 silly tar TAR_ENTRY_ERROR ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist' [Error: ENOENT: no such file or directory, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist'] {
+646 silly tar   errno: -2,
+646 silly tar   code: 'ENOENT',
+646 silly tar   syscall: 'lstat',
+646 silly tar   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist',
+646 silly tar   entry: ReadEntry {
+646 silly tar     _events: [Object: null prototype] { end: [Function (anonymous)] },
+646 silly tar     _eventsCount: 1,
+646 silly tar     _maxListeners: undefined,
+646 silly tar     writable: false,
+646 silly tar     readable: true,
+646 silly tar     extended: null,
+646 silly tar     globalExtended: null,
+646 silly tar     header: Header {
+646 silly tar       cksumValid: true,
+646 silly tar       needPax: false,
+646 silly tar       nullBlock: false,
+646 silly tar       block: null,
+646 silly tar       path: 'package/dist/emnapi.iife.d.ts',
+646 silly tar       mode: 420,
+646 silly tar       uid: null,
+646 silly tar       gid: null,
+646 silly tar       size: 14355,
+646 silly tar       mtime: 1985-10-26T08:15:00.000Z,
+646 silly tar       cksum: 5763,
+646 silly tar       linkpath: '',
+646 silly tar       uname: '',
+646 silly tar       gname: '',
+646 silly tar       devmaj: 0,
+646 silly tar       devmin: 0,
+646 silly tar       atime: null,
+646 silly tar       ctime: null,
+646 silly tar       [Symbol(type)]: '0'
+646 silly tar     },
+646 silly tar     startBlockSize: 14848,
+646 silly tar     blockRemain: 0,
+646 silly tar     remain: 0,
+646 silly tar     type: 'File',
+646 silly tar     meta: false,
+646 silly tar     ignore: false,
+646 silly tar     path: 'dist/emnapi.iife.d.ts',
+646 silly tar     mode: 438,
+646 silly tar     uid: null,
+646 silly tar     gid: null,
+646 silly tar     uname: '',
+646 silly tar     gname: '',
+646 silly tar     size: 14355,
+646 silly tar     mtime: 1985-10-26T08:15:00.000Z,
+646 silly tar     atime: null,
+646 silly tar     ctime: null,
+646 silly tar     linkpath: '',
+646 silly tar     absolute: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime/dist/emnapi.iife.d.ts',
+646 silly tar     [Symbol(shapeMode)]: false,
+646 silly tar     [Symbol(kCapture)]: false,
+646 silly tar     [Symbol(flowing)]: false,
+646 silly tar     [Symbol(paused)]: true,
+646 silly tar     [Symbol(pipes)]: [],
+646 silly tar     [Symbol(buffer)]: [
+646 silly tar       <Buffer 64 65 63 6c 61 72 65 20 6e 61 6d 65 73 70 61 63 65 20 65 6d 6e 61 70 69 20 7b 0a 0a 65 78 70 6f 72 74 20 74 79 70 65 20 43 6c 65 61 6e 75 70 48 6f 6f ... 9342 more bytes>,
+646 silly tar       <Buffer 4c 54 5f 4d 4f 44 55 4c 45 5f 41 50 49 5f 56 45 52 53 49 4f 4e 20 3d 20 56 65 72 73 69 6f 6e 2e 4e 4f 44 45 5f 41 50 49 5f 44 45 46 41 55 4c 54 5f 4d ... 4913 more bytes>
+646 silly tar     ],
+646 silly tar     [Symbol(objectMode)]: false,
+646 silly tar     [Symbol(encoding)]: null,
+646 silly tar     [Symbol(async)]: false,
+646 silly tar     [Symbol(decoder)]: null,
+646 silly tar     [Symbol(EOF)]: true,
+646 silly tar     [Symbol(emittedEnd)]: false,
+646 silly tar     [Symbol(emittingEnd)]: false,
+646 silly tar     [Symbol(closed)]: false,
+646 silly tar     [Symbol(emittedError)]: null,
+646 silly tar     [Symbol(bufferLength)]: 14355,
+646 silly tar     [Symbol(destroyed)]: false,
+646 silly tar     [Symbol(signal)]: undefined,
+646 silly tar     [Symbol(aborted)]: false
+646 silly tar   },
+646 silly tar   cwd: '/Users/shashankl/AI-News-Scraper-Email/node_modules/@emnapi/runtime',
+646 silly tar   tarCode: 'TAR_ENTRY_ERROR'
+646 silly tar }
+647 http fetch GET 200 https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.9.1.tgz 180ms (cache miss)
+648 http fetch GET 200 https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz 107ms (cache miss)
+649 http fetch GET 200 https://registry.npmjs.org/youch-core/-/youch-core-0.3.3.tgz 91ms (cache miss)
+650 http fetch GET 200 https://registry.npmjs.org/ws/-/ws-8.18.0.tgz 116ms (cache miss)
+651 http fetch GET 200 https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.34.5.tgz 122ms (cache miss)
+652 http fetch GET 200 https://registry.npmjs.org/semver/-/semver-7.7.4.tgz 113ms (cache miss)
+653 http fetch GET 200 https://registry.npmjs.org/esbuild/-/esbuild-0.27.3.tgz 229ms (cache miss)
+654 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 373ms
+655 silly audit report {}
+656 http fetch GET 200 https://registry.npmjs.org/sharp/-/sharp-0.34.5.tgz 318ms (cache miss)
+657 http fetch GET 200 https://registry.npmjs.org/youch/-/youch-4.1.0-beta.10.tgz 272ms (cache miss)
+658 http fetch GET 200 https://registry.npmjs.org/@sindresorhus/is/-/is-7.2.0.tgz 395ms (cache miss)
+659 http fetch GET 200 https://registry.npmjs.org/wrangler/-/wrangler-4.77.0.tgz 583ms (cache miss)
+660 http fetch GET 200 https://registry.npmjs.org/@poppinss/dumper/-/dumper-0.6.5.tgz 745ms (cache miss)
+661 http fetch GET 200 https://registry.npmjs.org/undici/-/undici-7.24.4.tgz 846ms (cache miss)
+662 http fetch GET 200 https://registry.npmjs.org/@poppinss/exception/-/exception-1.2.3.tgz 872ms (cache miss)
+663 http fetch GET 200 https://registry.npmjs.org/@cloudflare/workers-types/-/workers-types-4.20260317.1.tgz 975ms (cache miss)
+664 http fetch GET 200 https://registry.npmjs.org/@poppinss/colors/-/colors-4.1.6.tgz 1393ms (cache miss)
+665 http fetch GET 200 https://registry.npmjs.org/workerd/-/workerd-1.20260317.1.tgz 1678ms (cache miss)
+666 http fetch GET 200 https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz 2551ms (cache miss)
+667 http fetch GET 200 https://registry.npmjs.org/@img/sharp-libvips-darwin-arm64/-/sharp-libvips-darwin-arm64-1.2.4.tgz 3237ms (cache miss)
+668 http fetch GET 200 https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.27.3.tgz 4208ms (cache miss)
+669 http fetch GET 200 https://registry.npmjs.org/@cloudflare/workerd-darwin-arm64/-/workerd-darwin-arm64-1.20260317.1.tgz 4889ms (cache miss)
+670 verbose stack Error: EPERM: operation not permitted, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/error-stack-parser-es/dist'
+671 error code EPERM
+672 error syscall lstat
+673 error path /Users/shashankl/AI-News-Scraper-Email/node_modules/error-stack-parser-es/dist
+674 error errno -1
+675 error [Error: EPERM: operation not permitted, lstat '/Users/shashankl/AI-News-Scraper-Email/node_modules/error-stack-parser-es/dist'] {
+675 error   errno: -1,
+675 error   code: 'EPERM',
+675 error   syscall: 'lstat',
+675 error   path: '/Users/shashankl/AI-News-Scraper-Email/node_modules/error-stack-parser-es/dist'
+675 error }
+676 error
+676 error The operation was rejected by your operating system.
+676 error It is likely you do not have the permissions to access this file as the current user
+676 error
+676 error If you believe this might be a permissions issue, please double-check the
+676 error permissions of the file and its containing directories, or try running
+676 error the command again as root/Administrator.
+677 silly unfinished npm timer reify 1774415571959
+678 silly unfinished npm timer reify:unpack 1774415578773
+679 silly unfinished npm timer reifyNode:node_modules/error-stack-parser-es 1774415578773
+680 silly unfinished npm timer reifyNode:node_modules/cookie 1774415578773
+681 silly unfinished npm timer reifyNode:node_modules/@speed-highlight/core 1774415578773
+682 silly unfinished npm timer reifyNode:node_modules/pathe 1774415578773
+683 silly unfinished npm timer reifyNode:node_modules/@jridgewell/sourcemap-codec 1774415578773
+684 silly unfinished npm timer reifyNode:node_modules/@jridgewell/resolve-uri 1774415578773
+685 silly unfinished npm timer reifyNode:node_modules/@jridgewell/trace-mapping 1774415578773
+686 silly unfinished npm timer reifyNode:node_modules/path-to-regexp 1774415578773
+687 silly unfinished npm timer reifyNode:node_modules/miniflare 1774415578773
+688 silly unfinished npm timer reifyNode:node_modules/blake3-wasm 1774415578773
+689 silly unfinished npm timer reifyNode:node_modules/unenv 1774415578773
+690 silly unfinished npm timer reifyNode:node_modules/@cloudflare/unenv-preset 1774415578773
+691 silly unfinished npm timer reifyNode:node_modules/@cloudflare/kv-asset-handler 1774415578773
+692 verbose cwd /Users/shashankl/AI-News-Scraper-Email
+693 verbose os Darwin 25.3.0
+694 verbose node v20.20.0
+695 verbose npm  v10.8.2
+696 notice
+696 notice New [31mmajor[39m version of npm available! [31m10.8.2[39m -> [34m11.12.0[39m
+696 notice Changelog: [34mhttps://github.com/npm/cli/releases/tag/v11.12.0[39m
+696 notice To update run: [4mnpm install -g npm@11.12.0[24m
+696 notice  { force: true, [Symbol(proc-log.meta)]: true }
+697 verbose exit -1
+698 verbose code -1
+699 error A complete log of this run can be found in: /Users/shashankl/AI-News-Scraper-Email/tmp-npm-cache/_logs/2026-03-25T05_12_51_728Z-debug-0.log

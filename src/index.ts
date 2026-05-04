@@ -267,9 +267,9 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
     const twentyFourHoursAgo = now - 24 * 60 * 60 * 1000;
     const publishedAfter = new Date(twentyFourHoursAgo).toISOString();
 
-    // For Vaibhav, search within the last 7 days so we don't miss anything if he posts less frequently
+    // For priority channels, search within the last 7 days so we don't miss anything if they post less frequently
     const sevenDaysAgo = now - 7 * 24 * 60 * 60 * 1000;
-    const vaibhavPublishedAfter = new Date(sevenDaysAgo).toISOString();
+    const priorityPublishedAfter = new Date(sevenDaysAgo).toISOString();
 
     logs.push(`Searching for videos published after: ${publishedAfter}`);
 
@@ -299,8 +299,9 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
     logs.push(`Running ${searchQueries.length} search queries for AI dev news...`);
 
     const searchPromises = [
-        // Prioritize Vaibhav Sisinty's content (fetch his latest videos from the last 7 days)
-        searchYouTube(apiKey, '', vaibhavPublishedAfter, 5, 'UClXAalunTPaX1YV185DWUeg'),
+        // Prioritize specific AI dev channels (fetch latest videos from the last 7 days)
+        searchYouTube(apiKey, '', priorityPublishedAfter, 5, 'UClXAalunTPaX1YV185DWUeg'), // Vaibhav Sisinty
+        searchYouTube(apiKey, '', priorityPublishedAfter, 5, 'UC7i2yP8lU0uG3y14bV1t6OQ'), // Liam Ottley
         ...searchQueries.map(query => searchYouTube(apiKey, query, publishedAfter, 25)),
     ];
     const searchResults = await Promise.all(searchPromises);
@@ -310,7 +311,8 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
     searchResults.forEach((ids, index) => {
         let queryLabel = '';
         if (index === 0) queryLabel = 'Vaibhav Channel Latest';
-        else queryLabel = searchQueries[index - 1];
+        else if (index === 1) queryLabel = 'Liam Ottley Channel Latest';
+        else queryLabel = searchQueries[index - 2];
 
         logs.push(`Query "${queryLabel}": found ${ids.length} results`);
         ids.forEach(id => allVideoIds.add(id));
@@ -346,7 +348,9 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
 
     const filteredVideos = allVideos
         .filter(video => {
-            const isVaibhav = video.channelId === 'UClXAalunTPaX1YV185DWUeg' || video.channelTitle.toLowerCase() === 'vaibhav sisinty';
+            const isPriorityChannel = 
+                video.channelId === 'UClXAalunTPaX1YV185DWUeg' || video.channelTitle.toLowerCase() === 'vaibhav sisinty' ||
+                video.channelId === 'UC7i2yP8lU0uG3y14bV1t6OQ' || video.channelTitle.toLowerCase() === 'liam ottley';
 
             // Shared basic checks
             // 5. Broken Link / Status Filter
@@ -366,10 +370,10 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
             }
             if (!video.thumbnail) return false;
 
-            // 6. Age Filter (Strict 24h check, except for Vaibhav where we allow 7 days)
+            // 6. Age Filter (Strict 24h check, except for priority channels where we allow 7 days)
             const pubDate = new Date(video.publishedAt).getTime();
-            if (!isVaibhav && pubDate < twentyFourHoursAgo) return false;
-            if (isVaibhav && pubDate < sevenDaysAgo) return false;
+            if (!isPriorityChannel && pubDate < twentyFourHoursAgo) return false;
+            if (isPriorityChannel && pubDate < sevenDaysAgo) return false;
 
             // 7. Repetition Filter (Avoid IDs already in KV)
             if (seenIds.includes(video.id)) return false;
@@ -387,8 +391,8 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
                 return false;
             }
 
-            // Fast-track Vaibhav's videos: bypass views, AI dev keywords, exclusions, lang, sub count filters
-            if (isVaibhav) {
+            // Fast-track priority channel videos: bypass views, AI dev keywords, exclusions, lang, sub count filters
+            if (isPriorityChannel) {
                 return true;
             }
 
@@ -437,15 +441,18 @@ async function getTopAIVideos(apiKey: string, logs: string[], seenIds: string[] 
         'code with ania kubów', 'tech with tim', 'krish naik', 'codebasics',
         'varun mayya', 'tkssharma', 'traversy media', 'deeplizard',
         'statquest', '3blue1brown', 'andrej karpathy', 'lex fridman',
-        'vaibhav sisinty', 'marques brownlee', 'mkbhd', 'mrwhosetheboss',
+        'vaibhav sisinty', 'liam ottley', 'marques brownlee', 'mkbhd', 'mrwhosetheboss',
         'the primeagen', 'networkchuck', 'programming with mosh', 'codewithharry',
         'hitesh choudhary', 'harkirat singh', 'freecodecamp.org', 'the ai grid'
     ]);
 
     // Score videos by a combination of views, recency, and channel quality
     const scoredVideos = filteredVideos.map(video => {
-        const isVaibhav = video.channelId === 'UClXAalunTPaX1YV185DWUeg' || video.channelTitle.toLowerCase() === 'vaibhav sisinty';
-        if (isVaibhav) {
+        const isPriorityChannel = 
+            video.channelId === 'UClXAalunTPaX1YV185DWUeg' || video.channelTitle.toLowerCase() === 'vaibhav sisinty' ||
+            video.channelId === 'UC7i2yP8lU0uG3y14bV1t6OQ' || video.channelTitle.toLowerCase() === 'liam ottley';
+
+        if (isPriorityChannel) {
             return { ...video, score: 999999999 }; // Guarantee top spot
         }
 
